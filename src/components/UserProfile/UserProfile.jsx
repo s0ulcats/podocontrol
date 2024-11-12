@@ -26,23 +26,12 @@ const UserProfile = ({ user, posts }) => {
                 <div className={s.avatar}>{avatar}</div>
                 <div className={s.details}>
                     <div className={s.username}>{user.username}</div>
+                    <div className={s.phone}>{user.phone}</div>
                     <div className={s.status}>{user.status || ''}</div>
                     <button className={`${s.directButton} ${theme === 'dark' ? s.dark : s.light}`} onClick={handleDirectClick}>
                         Direct
                     </button>
                 </div>
-            </div>
-
-            <div className={s.posts}>
-                {userPosts.length > 0 ? (
-                    <div className={s.postsGrid}>
-                        {userPosts.map((post, idx) => (
-                            <PostItem key={idx} post={post} />
-                        ))}
-                    </div>
-                ) : (
-                    <div className={s.noPosts}>No posts available.</div>
-                )}
             </div>
         </div>
     );

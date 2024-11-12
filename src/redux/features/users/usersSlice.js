@@ -17,21 +17,22 @@ export const getAllUsers = createAsyncThunk('user/getAllUsers', async (_, { reje
     }
 });
 
+export const updateAccountData = createAsyncThunk('user/updateAccountData', async ({ id, params }) => {
+    try {
+        const { data } = await axios.put(`/users/${id}`, params);
+        return data; // Возвращаем полный объект пользователя с обновленным именем
+    } catch (error) {
+        throw error;
+    }
+});
+
+
 export const getUserById = createAsyncThunk('user/getUserById', async (id, { rejectWithValue }) => {
     try {
         const { data } = await axios.get(`/users/${id}`);
         return data;
     } catch (error) {
         return rejectWithValue(error.response?.data || 'Error fetching user');
-    }
-});
-
-export const updateUsersStatus = createAsyncThunk('user/updateUsersStatus', async ({ id, params }) => {
-    try {
-        const { data } = await axios.put(`/users/${id}`, params);
-        return data;
-    } catch (error) {
-        throw error;
     }
 });
 
@@ -64,7 +65,10 @@ export const usersSlice = createSlice({
             .addCase(getUserById.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-            });
+            })
+            .addCase(updateAccountData.fulfilled, (state, action) => {
+                state.user = action.payload; // Обновляем user целиком, чтобы получить новые данные
+            })            
     },
 });
 

@@ -1,21 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkIsAuth, logout } from '../../redux/features/auth/authSlice';
+import { checkIsAuth, logout, getMe } from '../../redux/features/auth/authSlice'; // Импорт getMe для обновления авторизации
 import { toast } from 'react-toastify';
-import { AiOutlineHome, AiOutlineUser, AiOutlineFileAdd } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineUser, AiOutlineFileAdd, AiOutlineMoon, AiFillSun, AiFillSetting } from 'react-icons/ai';
 import Logo from './Logo.png';
 import s from './Navbar.module.scss';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
 
 const Navbar = () => {
     const isAuth = useSelector(checkIsAuth);
+    const phone = useSelector((state) => state.user.user?.phone); // проверка phone из состояния
     const dispatch = useDispatch();
     const activeStyles = {
         color: '#ff79a9',
         fontWeight: 'bold',
     };
     const { theme, toggleTheme } = useContext(ThemeContext);
+
+    useEffect(() => {
+        // Обновляем статус пользователя при загрузке
+        dispatch(getMe());
+    }, [dispatch]);
 
     const logoutHandler = () => {
         dispatch(logout());
@@ -33,34 +39,36 @@ const Navbar = () => {
                             <AiOutlineHome /> Home
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink style={({ isActive }) => (isActive ? activeStyles : undefined)} to="/posts" className={`${s.navLink} ${theme}`}>
-                            <AiOutlineFileAdd /> My posts
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink style={({ isActive }) => (isActive ? activeStyles : undefined)} to="/new" className={`${s.navLink} ${theme}`}>
-                            <AiOutlineFileAdd /> Add Post
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink style={({ isActive }) => (isActive ? activeStyles : undefined)} to="/users" className={`${s.navLink} ${theme}`}>
-                            <AiOutlineUser /> Users
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink style={({ isActive }) => (isActive ? activeStyles : undefined)} to="/profile" className={`${s.navLink} ${theme}`}>
-                            <AiOutlineUser /> My profile
-                        </NavLink>
-                    </li>
+                    {(phone === '0668445985' || phone === '0507335098') && (
+                        <>
+                            <li>
+                                <NavLink style={({ isActive }) => (isActive ? activeStyles : undefined)} to="/new" className={`${s.navLink} ${theme}`}>
+                                    <AiOutlineFileAdd /> Add Post
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink style={({ isActive }) => (isActive ? activeStyles : undefined)} to="/users" className={`${s.navLink} ${theme}`}>
+                                    <AiOutlineUser /> Users
+                                </NavLink>
+                            </li>
+                        </>
+                    )}
+
                 </ul>
             )}
-            <div>
-                <button onClick={toggleTheme} className={`${s.themeSwitchBtn} ${theme === 'dark' ? s.dark : s.light}`}>
-                    {theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-                </button>
-            </div>
             <div className={s.authContainer}>
+                <button onClick={toggleTheme} className={`${s.themeSwitchBtn} ${theme === 'dark' ? s.dark : s.light}`}>
+                    {theme === 'light' ? <AiOutlineMoon /> : <AiFillSun />}
+                </button>
+
+                <NavLink
+                    style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                    to="/profile"
+                    className={`${s.navLink} ${theme}`}
+                >
+                    <AiFillSetting />
+                </NavLink>
+
                 {isAuth ? (
                     <button className={`${s.btn} ${theme === 'dark' ? s.dark : s.light}`} onClick={logoutHandler}>
                         Log out

@@ -27,20 +27,23 @@ const UsersPage = () => {
   return (
     <div className={`${s.container} ${theme === 'dark' ? s.dark : s.light}`}>
       <h1 className={s.title}>Users</h1>
-      <div className={s.userItem}>
+      <div className={s.userGrid}>
         {users.length ? (
-          users.map((user) => {
-            return (
-              <div key={user._id} onClick={() => handleUserClick(user._id)} className={`${s.userCard} ${theme === 'dark' ? s.dark : s.light}`}>
-                <div className={`${s.avatar} ${theme === 'dark' ? s.dark : s.light}`}>
-                  <AiOutlineUser className={s.userIcon} />
-                </div>
-                <div className={s.username}>
-                  {user.username}
-                </div>
+          users.map((user) => (
+            <div
+              key={user._id}
+              onClick={() => handleUserClick(user._id)}
+              className={`${s.userCard} ${theme === 'dark' ? s.dark : s.light}`}
+            >
+              <div className={`${s.avatar} ${theme === 'dark' ? s.dark : s.light}`}>
+                <AiOutlineUser className={s.userIcon} />
               </div>
-            );
-          })
+              <div className={s.userInfo}>
+                <div className={s.username}>{user.username}</div>
+                <div className={s.phone}>{user.phone}</div>
+              </div>
+            </div>
+          ))
         ) : (
           <p>No users found.</p>
         )}

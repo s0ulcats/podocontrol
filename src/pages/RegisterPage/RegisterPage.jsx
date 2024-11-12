@@ -4,13 +4,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkIsAuth, registerUser } from '../../redux/features/auth/authSlice';
 import { toast } from 'react-toastify';
-import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineLock, AiOutlinePhone } from 'react-icons/ai';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const { status } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuth = useSelector(checkIsAuth);
@@ -21,14 +21,15 @@ const RegisterPage = () => {
     if (token) {
       navigate('/');
     }
-  }, [status, isAuth, navigate]);
+  }, [ isAuth, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      dispatch(registerUser({ username, password }));
+      dispatch(registerUser({ username, phone, password }));
       setPassword('');
       setUsername('');
+      setPassword('');
       toast.success('Registration successful!');
     } catch (error) {
       toast.error('Registration failed. Please try again.');
@@ -48,6 +49,17 @@ const RegisterPage = () => {
           onChange={(e) => setUsername(e.target.value)}
           className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
           autoComplete="username"
+        />
+      </label>
+      <label>
+        <AiOutlinePhone className={s.icon} />
+        <input
+          type="text"
+          placeholder="Enter your phone number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
+          autoComplete="phone"
         />
       </label>
       <label>

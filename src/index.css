@@ -19,21 +19,6 @@ a {
     color: inherit; /* Устанавливаем цвет текста ссылок по умолчанию */
 }
 
-/* Добавляем стили для кнопок */
-button {
-    cursor: pointer; /* Курсор при наведении на кнопки */
-    border: none; /* Убираем рамки */
-    padding: 0.5rem 1rem; /* Отступы для кнопок */
-    border-radius: 5px; /* Закругленные углы */
-    background-color: #ff79a9; /* Цвет фона кнопок */
-    color: #ff4081; /* Цвет текста кнопок */
-    transition: background-color 0.3s ease; /* Плавный переход при наведении */
-}
-
-button:hover {
-    background-color: #ff5a8d; /* Цвет фона при наведении */
-}
-
 /* Стили для контейнера приложения */
 .container {
     max-width: 1200px; /* Максимальная ширина контейнера */

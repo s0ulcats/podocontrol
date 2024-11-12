@@ -55,6 +55,7 @@ $background-color_5: #c9b4fa;
   padding: 8px 12px;
   transition: background 0.3s, color 0.3s;
   border-radius: 5px;
+  position: relative; /* Добавляем для позиционирования текста */
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -69,8 +70,55 @@ $background-color_5: #c9b4fa;
   color: $color_3;
 }
 
+.navLink .settingsText {
+  position: absolute;
+  top: 0;
+  left: 100%; /* Скрываем текст справа */
+  opacity: 0;
+  white-space: nowrap;
+  padding-left: 10px;
+  color: $color_1;
+  font-weight: bold;
+  transition: left 0.3s ease, opacity 0.3s ease; /* Плавное появление */
+}
+
+.navLink:hover .settingsText {
+  left: 100%; /* Показываем текст */
+  opacity: 1;
+}
+
+
 .authContainer {
+  display: flex;
+  align-items: center;
   margin-left: auto;
+}
+
+.themeSwitchBtn {
+  text-align: right;
+  background-color: $background-color_2;
+  color: $color_3;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s ease-in-out;
+  font-weight: bold;
+
+  &:hover {
+    color: $color_1;
+    transform: scale(1.05);
+  }
+
+  &.dark {
+    background-color: $background-color_1;
+    color: $color_2;
+  }
+
+  &.light {
+    background-color: $background-color_5;
+    color: $color_3;
+  }
 }
 
 .btn {
@@ -85,35 +133,8 @@ $background-color_5: #c9b4fa;
   @media (max-width: 600px) {
     padding: 8px 12px;
   }
-  
-  &:hover {
-    background-color: $background-color_4;
-  }
-}
-
-.themeSwitchBtn {
-  background-color: $background-color_2;
-  color: $color_3;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s, transform 0.2s ease-in-out;
-  font-weight: bold;
 
   &:hover {
     background-color: $background-color_4;
-    color: $color_1;
-    transform: scale(1.05);
-  }
-
-  &.dark {
-    background-color: $background-color_1;
-    color: $color_2;
-  }
-
-  &.light {
-    background-color: $background-color_5;
-    color: $color_3;
   }
 }

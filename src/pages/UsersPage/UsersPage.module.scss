@@ -11,115 +11,99 @@ $background-color_7: #002b5c;
 $background-color_8: #b69af8;
 
 .container {
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
-	@media (max-width: 768px) {
-		padding: 15px;
-	}
-}
+  &.dark {
+    background-color: $background-color_1;
+  }
 
-.container.dark {
-	background-color: $background-color_1;
-}
-
-.container.light {
-	background-color: $background-color_2;
+  &.light {
+    background-color: $background-color_2;
+  }
 }
 
 .title {
-	color: $color_1;
-	margin-bottom: 20px;
-	text-align: center;
-
-	@media (max-width: 768px) {
-		font-size: 1.5rem;
-	}
+  color: $color_1;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 2rem;
 }
 
-.userItem {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.userGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 
 .userCard {
-	display: flex;
-	align-items: center;
-	padding: 10px;
-	border-radius: 5px;
-	margin: 10px 0;
-	width: 100%;
-	cursor: pointer;
-	transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-	@media (max-width: 768px) {
-		padding: 8px;
-	}
-}
+  &.dark {
+    background-color: $background-color_3;
 
-.userCard.dark {
-	background-color: $background-color_3;
+    &:hover {
+      background-color: $background-color_5;
+      transform: scale(1.05);
+    }
+  }
 
-	&:hover {
-		background-color: $background-color_5;
-		transform: scale(1.02);
-	}
-}
+  &.light {
+    background-color: $background-color_4;
 
-.userCard.light {
-	background-color: $background-color_4;
-
-	&:hover {
-		background-color: $background-color_6;
-		transform: scale(1.02);
-	}
+    &:hover {
+      background-color: $background-color_6;
+      transform: scale(1.05);
+    }
+  }
 }
 
 .avatar {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	color: $color_1;
-	font-weight: bold;
-	font-size: 1.5rem;
-	margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: $color_1;
+  font-size: 1.5rem;
+  margin-right: 15px;
 
-	@media (max-width: 768px) {
-		width: 40px;
-		height: 40px;
-		font-size: 1.2rem;
-	}
+  &.dark {
+    background-color: $background-color_7;
+  }
+
+  &.light {
+    background-color: $background-color_8;
+  }
 }
 
-.avatar.dark {
-	background-color: $background-color_7;
-}
-
-.avatar.light {
-	background-color: $background-color_8;
+.userInfo {
+  display: flex;
+  flex-direction: column;
 }
 
 .username {
-	font-size: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 
-	@media (max-width: 768px) {
-		font-size: 1rem;
-	}
+  &.dark {
+    color: $color_2;
+  }
+
+  &.light {
+    color: $color_3;
+  }
 }
 
-.username.dark {
-	color: $color_2;
-}
-
-.username.light {
-	color: $color_3;
-}
-
-.userIcon {
-	color: $color_1;
+.phone {
+  font-size: 0.9rem;
+  color: $color_3;
 }

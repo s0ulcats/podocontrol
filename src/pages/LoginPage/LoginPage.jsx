@@ -4,11 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkIsAuth, loginUser } from '../../redux/features/auth/authSlice';
 import { toast } from 'react-toastify';
-import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineLock, AiOutlinePhone } from 'react-icons/ai';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const { status } = useSelector(state => state.auth);
   const dispatch = useDispatch();
@@ -25,8 +26,9 @@ const LoginPage = () => {
 
   const handleSubmit = async () => {
     try {
-      await dispatch(loginUser({ username, password })).unwrap();
+      await dispatch(loginUser({ username, phone, password })).unwrap();
       setUsername('');
+      setPhone('');
       setPassword('');
     } catch (error) {
       toast.error('Invalid Credentials');
@@ -37,15 +39,15 @@ const LoginPage = () => {
     <form onSubmit={(e) => e.preventDefault()} className={`${s.form} ${theme === 'dark' ? s.dark : s.light}`}>
       <h1 className={s.title}>Authorization</h1>
       <label className={s.label}>
-        <AiOutlineUser className={s.icon} />
-        Login:
+        <AiOutlinePhone className={s.icon} />
+        Phone Number:
         <input
           type="text"
-          placeholder='Login'
-          value={username}
+          placeholder='Phone Number'
+          value={phone}
           className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
-          onChange={(e) => setUsername(e.target.value)}
-          autoComplete="username"
+          onChange={(e) => setPhone(e.target.value)}
+          autoComplete="phone"
         />
       </label>
       <label className={s.label}>

@@ -24,23 +24,10 @@ const PostItem = ({ post }) => {
                         <span>{post.title}</span>
                     </div>
                 )}
-                <div className={s.info}>
-                    <div className={s.username}>{post.username || 'Unavailable author '}</div>
-                    <div className={s.date}>
-                        <Moment date={post.createdAt} format='D MMM YYYY' />
-                    </div>
-                </div>
                 <div className={`${s.title} ${theme === 'dark' ? s.dark : s.light}`}>{post.title}</div>
                 <p className={`${s.text} ${theme === 'dark' ? s.dark : s.light}`}>{post.text}</p>
 
-                <div className={s.stats}>
-                    <div className={s.statItem}>
-                        <AiFillEye className={s.icon} /> <span>{post.views}</span>
-                    </div>
-                    <div className={s.statItem}>
-                        <AiOutlineMessage className={s.icon} /> <span>{post.comments?.length || 0}</span>
-                    </div>
-                </div>
+                
             </div>
         </NavLink>
     );

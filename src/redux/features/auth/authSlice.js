@@ -8,9 +8,9 @@ const initialState = {
     status: null,
 }
 
-export const registerUser = createAsyncThunk('auth/registerUser', async ({ username, password }) => {
+export const registerUser = createAsyncThunk('auth/registerUser', async ({ username, phone, password }) => {
     try {
-        const { data } = await axios.post('/auth/register', { username, password });
+        const { data } = await axios.post('/auth/register', { username, phone, password });
         if (data.token) {
             window.localStorage.setItem('token', data.token);
         }
@@ -21,9 +21,9 @@ export const registerUser = createAsyncThunk('auth/registerUser', async ({ usern
     }
 });
 
-export const loginUser = createAsyncThunk('auth/loginUser', async ({ username, password }) => {
+export const loginUser = createAsyncThunk('auth/loginUser', async ({ username, phone, password }) => {
     try {
-        const { data } = await axios.post('/auth/login', { username, password });
+        const { data } = await axios.post('/auth/login', { username, phone, password });
         if (data.token) {
             window.localStorage.setItem('token', data.token);
         }
