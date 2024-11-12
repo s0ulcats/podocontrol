@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     return (
         <div className={`${s.container} ${theme === 'dark' ? s.dark : s.light}`}>
             <Navbar />
-            <div className={`${s.content} ${theme === 'dark' ? s.dark : s.light}`}>
+            <div className={`${s.content} ${theme === 'dark' ? s.darkContent : s.lightContent}`}>
                 {children}
             </div>
         </div>

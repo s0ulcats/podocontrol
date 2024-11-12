@@ -11,6 +11,7 @@ const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({ username: '', phone: '', password: '' });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuth = useSelector(checkIsAuth);
@@ -21,19 +22,26 @@ const RegisterPage = () => {
     if (token) {
       navigate('/');
     }
-  }, [ isAuth, navigate]);
+  }, [isAuth, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    try {
+
+    // Валидация
+    const newErrors = { username: '', phone: '', password: '' };
+    if (!username) newErrors.username = 'Username is required';
+    if (!/^\+?\d{10,15}$/.test(phone)) newErrors.phone = 'Invalid phone number';
+    if (password.length < 6) newErrors.password = 'Password must be at least 6 characters long';
+    setErrors(newErrors);
+
+    if (!newErrors.username && !newErrors.phone && !newErrors.password) {
       dispatch(registerUser({ username, phone, password }));
-      setPassword('');
       setUsername('');
+      setPhone('');
       setPassword('');
       toast.success('Registration successful!');
-    } catch (error) {
-      toast.error('Registration failed. Please try again.');
-      console.log(error);
+    } else {
+      toast.error('Please correct the errors');
     }
   };
 
@@ -50,6 +58,7 @@ const RegisterPage = () => {
           className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
           autoComplete="username"
         />
+        {errors.username && <p className="error-text">{errors.username}</p>}
       </label>
       <label>
         <AiOutlinePhone className={s.icon} />
@@ -61,6 +70,7 @@ const RegisterPage = () => {
           className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
           autoComplete="phone"
         />
+        {errors.phone && <p className="error-text">{errors.phone}</p>}
       </label>
       <label>
         <AiOutlineLock className={s.icon} />
@@ -72,6 +82,7 @@ const RegisterPage = () => {
           className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
           autoComplete="new-password"
         />
+        {errors.password && <p className="error-text">{errors.password}</p>}
       </label>
       <div className={s.actions}>
         <button type="submit" className={s.button}>Submit</button>

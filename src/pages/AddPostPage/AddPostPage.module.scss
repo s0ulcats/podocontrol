@@ -1,197 +1,142 @@
-$color_1: #ff4081;
-$color_2: white;
-$color_3: black;
-$color_4: #a106a1;
-$background-color_1: #002b5c;
-$background-color_2: #28a745;
-$background-color_3: #dc3545;
-$background-color_4: #ac88fd;
-$background-color_5: #bda0ff;
-
 .addPostPage {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.addPostPage.dark {
-  background-color: $background-color_1;
-}
-
-.addPostPage.light {
-  background-color: $background-color_5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .title {
   font-size: 24px;
+  font-weight: bold;
   margin-bottom: 20px;
-  text-align: center;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .fileInputLabel {
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-.fileInputLabel.dark {
-  color: $color_2;
-}
-
-.fileInputLabel.light {
-  color: $color_3;
-}
-
-.fileInput {
-  display: none;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: var(--text-color);
 }
 
 .icon {
   margin-right: 10px;
 }
 
+.fileInput {
+  display: none;
+}
+
 .imagePreviewContainer {
-  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .imageWrapper {
   position: relative;
+  display: inline-block;
 }
 
 .imagePreview {
   max-width: 100%;
-  max-height: 200px;
+  max-height: 300px;
   border-radius: 8px;
-  margin-bottom: 10px;
 }
 
 .detachButton {
   position: absolute;
   top: 5px;
   right: 5px;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
   border: none;
+  padding: 5px;
+  border-radius: 50%;
   cursor: pointer;
 }
 
-.inputField {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  color: $color_1;
-  background-color: transparent;
-  border-radius: 4px;
+.inputLabel {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--text-color);
 }
 
-.inputField.dark {
-  border: 1px solid #ccc;
-  color: $color_1;
-}
-
-.inputField.light {
-  border: 1px solid #000;
-  color: $color_3;
-}
-
+.inputField,
 .textareaField {
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
-  background-color: transparent;
-  border-radius: 4px;
-}
-
-.textareaField.dark {
+  border-radius: 5px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
-  color: $color_1;
+  background-color: var(--input-bg);
+  color: var(--input-text-color);
 }
 
-.textareaField.light {
-  border: 1px solid #000;
-  color: $color_3;
+.textareaField {
+  height: 150px;
+  resize: vertical;
 }
 
 .buttonGroup {
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
+  justify-content: center;
+}
+
+.submitBtn,
+.cancelBtn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .submitBtn {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: $background-color_2;
+  background-color: #27ae60;
+  color: white;
 }
 
-.submitBtn.dark {
-  color: $color_2;
-}
-
-.submitBtn.light {
-  color: $color_3;
+.submitBtn:hover {
+  background-color: #2ecc71;
 }
 
 .cancelBtn {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: $background-color_3;
+  background-color: #e74c3c;
+  color: white;
 }
 
-.cancelBtn.dark {
-  color: $color_2;
+.cancelBtn:hover {
+  background-color: #c0392b;
 }
 
-.cancelBtn.light {
-  color: $color_3;
+/* Light theme */
+.light {
+  --bg-color: #ffffff;
+  --text-color: #333;
+  --input-bg: #f7f7f7;
+  --input-text-color: #333;
 }
 
-@media (max-width: 768px) {
-  .addPostPage {
-    padding: 15px;
-  }
-
-  .title {
-    font-size: 20px;
-  }
-
-  .inputField,
-  .textareaField {
-    padding: 8px;
-  }
-
-  .submitBtn,
-  .cancelBtn {
-    padding: 8px 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .addPostPage {
-    padding: 10px;
-  }
-
-  .title {
-    font-size: 18px;
-  }
-
-  .inputField,
-  .textareaField {
-    padding: 6px;
-  }
-
-  .submitBtn,
-  .cancelBtn {
-    padding: 6px 10px;
-  }
+/* Dark theme */
+.dark {
+  --bg-color: #333;
+  --text-color: #fff;
+  --input-bg: #555;
+  --input-text-color: #fff;
 }

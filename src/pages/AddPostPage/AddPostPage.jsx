@@ -10,27 +10,35 @@ const AddPostPage = () => {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [image, setImage] = useState('');
+    const [error, setError] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { theme } = useContext(ThemeContext);
 
-    const submitHandler = () => {
+    const submitHandler = async () => {
+        if (!title || !text) {
+            setError('Title and text are required');
+            return;
+        }
         try {
             const data = new FormData();
             data.append('title', title);
             data.append('text', text);
-            data.append('image', image);
-            dispatch(createPost(data));
+            if (image) data.append('image', image);
+
+            await dispatch(createPost(data));
             navigate('/');
         } catch (error) {
-            console.log(error);
+            setError('Failed to create post. Please try again later.');
+            console.error(error);
         }
     };
 
     const clearFormHandler = () => {
-        setText('');
         setTitle('');
+        setText('');
         setImage('');
+        setError('');
     };
 
     const detachImageHandler = () => {
@@ -40,6 +48,8 @@ const AddPostPage = () => {
     return (
         <form onSubmit={(e) => e.preventDefault()} className={`${s.addPostPage} ${theme === 'dark' ? s.dark : s.light}`}>
             <h1 className={s.title}>Add new post</h1>
+
+            {error && <p className={s.error}>{error}</p>}
 
             <label className={s.fileInputLabel}>
                 <BsImage className={s.icon} />
@@ -57,7 +67,7 @@ const AddPostPage = () => {
                     <div className={s.imageWrapper}>
                         <img
                             src={URL.createObjectURL(image)}
-                            alt="img"
+                            alt="Preview"
                             className={s.imagePreview}
                         />
                         <button type="button" className={s.detachButton} onClick={detachImageHandler}>
@@ -89,8 +99,12 @@ const AddPostPage = () => {
             </label>
 
             <div className={s.buttonGroup}>
-                <button className={`${s.submitBtn} ${theme === 'dark' ? s.dark : s.light}`} onClick={submitHandler}>Add</button>
-                <button className={`${s.cancelBtn} ${theme === 'dark' ? s.dark : s.light}`} type="button" onClick={clearFormHandler}>Cancel</button>
+                <button className={`${s.submitBtn} ${theme === 'dark' ? s.dark : s.light}`} onClick={submitHandler}>
+                    Add
+                </button>
+                <button className={`${s.cancelBtn} ${theme === 'dark' ? s.dark : s.light}`} type="button" onClick={clearFormHandler}>
+                    Cancel
+                </button>
             </div>
         </form>
     );

@@ -1,47 +1,43 @@
-$color_1: #fff;
-$color_2: #b3b3b3;
-$color_3: black;
-$background-color_1: #0d1117;
-$background-color_2: #ff4081;
-$background-color_3: #ff79a9;
-$background-color_4: #bda0ff;
-$background-color_5: #d2c1fa;
-
+/* Основные стили для профиля пользователя */
 .profileContainer {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   border-radius: 10px;
-  max-width: 800px;
-  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.profileContainer.dark {
-  background-color: $background-color_1;
-  color: $color_1;
+/* Темная и светлая темы */
+.dark {
+  background-color: #2e2e2e;
+  color: #f1f1f1;
 }
 
-.profileContainer.light {
-  background-color: $background-color_5;
-  color: $color_3;
+.light {
+  background-color: #ffffff;
+  color: #333333;
 }
 
+/* Информация о пользователе */
 .info {
   display: flex;
-  align-items: center;
   margin-bottom: 20px;
 }
 
 .avatar {
-  background-color: $background-color_2;
-  color: $color_1;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  background-color: #888888;
+  color: #ffffff;
+  font-size: 18px;
   font-weight: bold;
-  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .details {
@@ -52,70 +48,51 @@ $background-color_5: #d2c1fa;
 .username {
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.phone {
+  font-size: 16px;
+  margin-bottom: 5px;
 }
 
 .status {
   font-size: 14px;
+  color: #666666;
+  margin-bottom: 15px;
 }
 
-.status.dark {
-  color: $color_2;
-}
-
-.status.light {
-  color: $color_3;
-}
-
+/* Кнопка "Direct" */
 .directButton {
-  margin-top: 10px;
-  background-color: $background-color_2;
-  border: none;
   padding: 8px 16px;
+  border: none;
+  background-color: #ff79a9;
+  color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: $background-color_3;
+      background-color: #ff5383;
   }
 }
 
-.directButton.dark {
-  color: $color_1;
-}
-
-.directButton.light {
-  color: $color_3;
-}
-
+/* Раздел с постами пользователя */
 .posts {
   margin-top: 20px;
 }
 
-.postsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+.postsTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
-.noPosts {
-  color: $color_2;
-  text-align: center;
-  font-size: 16px;
+.posts .dark .postsTitle {
+  color: #f1f1f1;
 }
 
-@media (max-width: 768px) {
-  .postsGrid {
-    grid-template-columns: 1fr;
-  }
-  
-  .avatar {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-  }
-
-  .username {
-    font-size: 18px;
-  }
+.posts .light .postsTitle {
+  color: #333333;
 }

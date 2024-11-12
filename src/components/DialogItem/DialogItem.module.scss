@@ -1,91 +1,98 @@
-$color_1: #ff79a9;
-$color_2: #888;
-$background-color_1: #ffffff;
-$background-color_2: #f0f0f0;
+// src/Components/DialogItem/DialogItem.module.scss
 
+/* Общие стили для компонента DialogItem */
 .dialogItem {
-  display: flex;
-  align-items: center;
+  background-color: #ffffff;
   padding: 15px;
-  background-color: $background-color_1;
-  border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-  margin: 10px 0;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 
   &:hover {
-    background-color: $background-color_2;
-  }
-
-  @media (max-width: 600px) {
-    padding: 12px;
-    margin: 8px 0;
-  }
-
-  @media (max-width: 900px) {
-    padding: 13px;
-    margin: 9px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
 }
 
+/* Стили для ссылки */
+.link {
+  text-decoration: none;
+}
+
+/* Стили для информации о диалоге */
 .info {
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
-
-  @media (max-width: 600px) {
-    margin-left: 8px;
-  }
 }
 
+/* Стили для имени пользователя */
 .username {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333333;
   display: flex;
   align-items: center;
-
-  @media (max-width: 600px) {
-    font-size: 14px;
-  }
-
-  @media (max-width: 900px) {
-    font-size: 15px;
-  }
+  gap: 10px;
 }
 
+/* Стили для даты */
 .date {
+  font-size: 12px;
+  color: #777777;
   display: flex;
   align-items: center;
-
-  @media (max-width: 600px) {
-    font-size: 12px;
-  }
-
-  @media (max-width: 900px) {
-    font-size: 13px;
-  }
+  gap: 5px;
 }
 
+/* Стили для иконок */
 .icon {
-  margin-right: 5px;
-  color: $color_1;
-
-  @media (max-width: 600px) {
-    font-size: 12px;
-  }
-
-  @media (max-width: 900px) {
-    font-size: 14px;
-  }
+  color: #888888;
+  font-size: 18px;
 }
 
+/* Стили для темной темы */
+.dark {
+  background-color: #2e2e2e;
+  color: #f1f1f1;
+}
+
+.dark .username {
+  color: #f1f1f1;
+}
+
+.dark .date {
+  color: #bbbbbb;
+}
+
+.dark .icon {
+  color: #bbbbbb;
+}
+
+/* Стили для светлой темы */
+.light {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.light .username {
+  color: #333333;
+}
+
+.light .date {
+  color: #777777;
+}
+
+.light .icon {
+  color: #888888;
+}
+
+/* Стили для загрузки */
 .loading {
   text-align: center;
-  color: $color_2;
-
-  @media (max-width: 600px) {
-    font-size: 14px;
-  }
-
-  @media (max-width: 900px) {
-    font-size: 15px;
-  }
+  font-size: 16px;
+  color: #888888;
 }

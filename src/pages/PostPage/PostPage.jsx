@@ -45,8 +45,6 @@ const PostPage = () => {
         <h2 className={s.title}>{post.title}</h2>
         <p className={s.text}>{post.text}</p>
         <div className={s.postActions}>
-          
-
           {user?._id === post.author && (
             <div className={s.actions}>
               <button className={`${s.iconBtn} ${theme === 'dark' ? s.dark : s.light}`}>

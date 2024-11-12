@@ -1,53 +1,69 @@
-$color_1: white;
-$color_2: black;
-$background-color_1: #0e0045;
-$background-color_2: #13025b;
-$background-color_3: #dcd0f9;
-$background-color_4: #e1d6fc;
+// src/Layout/Layout.module.scss
 
+/* Общие стили */
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: $background-color_1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Arial', sans-serif;
 }
 
-.content {
-  flex: 1;
-  padding: 20px;
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: $background-color_2;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Стили для светлой темы */
+.light {
+  background-color: #ffffff;
+  color: #333333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-  @media (max-width: 600px) {
-    padding: 15px;
+.light .navbar {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.light .content {
+  background-color: #f9f9f9;
+}
+
+/* Стили для темной темы */
+.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark .navbar {
+  background-color: #333333;
+  color: #f1f1f1;
+}
+
+.dark .content {
+  background-color: #1a1a1a;
+}
+
+/* Стили для контента в светлой теме */
+.lightContent {
+  background-color: #f9f9f9;
+  color: #333333;
+}
+
+/* Стили для контента в темной теме */
+.darkContent {
+  background-color: #1a1a1a;
+  color: #f1f1f1;
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+  .container {
+      padding: 10px;
   }
 
-  @media (max-width: 768px) {
-    padding: 10px;
-    width: 100%;
+  .content {
+      padding: 15px;
   }
-}
 
-.container.dark {
-  background-color: $background-color_1;
-  color: $color_1;
-}
-
-.content.dark {
-  background-color: $background-color_2;
-  color: $color_1;
-}
-
-.container.light {
-  background-color: $background-color_3;
-  color: $color_2;
-}
-
-.content.light {
-  background-color: $background-color_4;
-  color: $color_2;
+  .navbar {
+      padding: 10px;
+  }
 }

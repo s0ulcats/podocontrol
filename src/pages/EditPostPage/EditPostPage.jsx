@@ -89,9 +89,9 @@ const EditPostPage = () => {
         Title:
         <input
           type="text"
-          placeholder="title"
+          placeholder="Title"
           value={title}
-          className={s.inputField}
+          className={`${s.inputField} ${theme === 'dark' ? s.dark : s.light}`}
           onChange={(e) => setTitle(e.target.value)}
         />
       </label>
@@ -102,13 +102,13 @@ const EditPostPage = () => {
         <textarea
           value={text}
           placeholder="Post text"
-          className={s.textareaField}
+          className={`${s.textareaField} ${theme === 'dark' ? s.dark : s.light}`}
           onChange={(e) => setText(e.target.value)}
         ></textarea>
       </label>
 
       <div className={s.buttonGroup}>
-        <button type="submit" className={s.saveButton}>
+        <button type="submit" className={`${s.saveButton} ${theme === 'dark' ? s.dark : s.light}`}>
           <AiOutlineSave className={s.iconButton} /> Save
         </button>
         <button type="button" className={`${s.cancelButton} ${theme === 'dark' ? s.dark : s.light}`} onClick={clearFormHandler}>

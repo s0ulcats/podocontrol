@@ -1,71 +1,71 @@
-$color_1: white;
-$color_2: black;
-$color_3: #aaa;
-$background-color_1: #001f3f;
-$background-color_2: #d4c1ff;
-$background-color_3: #ff4081;
+// ProfilePage.module.scss
 
 .container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-	transition: background-color 0.3s, color 0.3s;
-
-	&.dark {
-		background-color: $background-color_1;
-		color: $color_1;
-	}
-	&.light {
-		background-color: $background-color_2;
-		color: $color_2;
-
-	}
-}
-
-.userCard {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 100%;
-	max-width: 400px;
-	padding: 15px;
-	background-color: rgba(255, 255, 255, 0.1);
-	border-radius: 10px;
-	margin-bottom: 20px;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.avatar {
-	width: 60px;
-	height: 60px;
-	background-color: $background-color_3;
-	color: $color_1;
-	font-size: 2rem;
+	transition: all 0.3s ease;
+  }
+  
+  .userCard {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	background-color: var(--background);
+	border-radius: 15px;
+	padding: 20px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+  }
+  
+  .avatar {
+	width: 80px;
+	height: 80px;
+	background-color: var(--avatar-bg);
 	border-radius: 50%;
-	margin-bottom: 10px;
-}
-
-.username, .phone {
 	display: flex;
+	justify-content: center;
 	align-items: center;
-	font-size: 1.2rem;
-	margin: 5px 0;
-
-	.icon {
-		margin-right: 8px;
-		color: $color_3;
+	font-size: 30px;
+	color: var(--icon-color);
+	margin-bottom: 15px;
+  }
+  
+  .userInfo {
+	text-align: center;
+	margin-bottom: 20px;
+  }
+  
+  .username,
+  .phone {
+	font-size: 18px;
+	color: var(--text-color);
+	margin-bottom: 5px;
+  }
+  
+  .icon {
+	margin-right: 10px;
+	font-size: 20px;
+  }
+  
+  .profileNotFound {
+	color: var(--error-color);
+	text-align: center;
+  }
+  
+  .error {
+	color: red;
+	text-align: center;
+  }
+  
+  @media screen and (max-width: 768px) {
+	.container {
+	  padding: 15px;
 	}
-}
-
-.statusEditor, .statusDisplay {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
+	
+	.userCard {
+	  width: 100%;
+	}
+  }
+  

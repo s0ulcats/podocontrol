@@ -1,159 +1,102 @@
-$color_1: white;
-$color_2: #ff4081;
-$color_3: black;
-$color_4: #aaa;
-$color_5: #000000;
-$background-color_1: #001f3f;
-$background-color_2: #c6b0fb;
-$background-color_3: #002b5c;
-$background-color_4: #bfa7f8;
-$background-color_5: #ff4081;
-$background-color_6: #e91e63;
-
 .container {
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-	@media (max-width: 768px) {
-		padding: 15px;
-	}
-}
-
-.container.dark {
-	color: $color_1;
-	background-color: $background-color_1;
-}
-
-.container.light {
-	color: $color_3;
-	background-color: $background-color_2;
-}
-
-.returnBtn {
-	color: $color_2;
-	text-decoration: none;
-	margin-bottom: 20px;
-}
-
-.postPage {
-	position: relative;
-	transition: transform 0.2s ease-in-out;
-}
-
-.imgWrapper {
-	max-width: 100%;
-	border-radius: 10px;
-	overflow: hidden;
-}
-
-.image {
-	width: 100%;
-	height: auto;
-}
-
-.postInfo {
 	display: flex;
-	justify-content: space-between;
-	font-size: 0.9rem;
-	margin: 10px 0;
-}
-
-.title {
-	font-size: 2rem;
-	margin: 10px 0;
-	color: $color_2;
-}
-
-.text {
-	margin: 10px 0;
-}
-
-.postActions {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 20px;
-}
-
-.iconBtn {
-	background: transparent;
-	border: none;
-	cursor: pointer;
-	transition: color 0.3s;
-
-	&:hover {
-		color: $color_2;
-	}
-}
-
-.iconBtn.dark {
-	color: $color_1;
-}
-
-.iconBtn.light {
-	color: $color_3;
-}
-
-.comments {
-	margin-top: 30px;
-	padding-top: 20px;
-	border-top: 1px solid #333;
-}
-
-.addComment {
-	display: flex;
+	flex-direction: column;
 	align-items: center;
-	margin-bottom: 20px;
-}
-
-.commentInput {
-	flex: 1;
-	padding: 10px;
-	border: 1px solid #333;
-	border-radius: 5px;
-	margin-right: 10px;
-
+	padding: 20px;
+	gap: 20px;
+  
+	&.dark {
+	  background-color: #1e1e1e;
+	  color: #f5f5f5;
+	}
+  
+	&.light {
+	  background-color: #ffffff;
+	  color: #333333;
+	}
+  
+	.returnBtn {
+	  align-self: flex-start;
+	  font-size: 18px;
+	  font-weight: bold;
+	  color: #4a90e2;
+	  text-decoration: none;
+	  &:hover {
+		color: #1d76c4;
+	  }
+	}
+  
+	.postPage {
+	  width: 100%;
+	  max-width: 900px;
+	  display: flex;
+	  flex-direction: column;
+	  gap: 20px;
+	}
+  
+	.imgWrapper {
+	  display: flex;
+	  justify-content: center;
+	  margin-bottom: 20px;
+	}
+  
+	.image {
+	  max-width: 100%;
+	  height: auto;
+	  border-radius: 8px;
+	}
+  
+	.title {
+	  font-size: 24px;
+	  font-weight: bold;
+	}
+  
+	.text {
+	  font-size: 18px;
+	  line-height: 1.6;
+	}
+  
+	.postActions {
+	  display: flex;
+	  justify-content: flex-start;
+	  gap: 10px;
+	}
+  
+	.actions {
+	  display: flex;
+	  gap: 15px;
+	}
+  
+	.iconBtn {
+	  background: none;
+	  border: none;
+	  font-size: 24px;
+	  color: #888;
+	  cursor: pointer;
+  
+	  &:hover {
+		color: #f15b5b;
+	  }
+	}
+  
 	@media (max-width: 768px) {
-		margin-right: 5px;
+	  .title {
+		font-size: 20px;
+	  }
+  
+	  .text {
+		font-size: 16px;
+	  }
 	}
-}
-
-.commentInput.dark {
-	background-color: $background-color_3;
-	color: $color_1;
-
-	&::placeholder {
-		color: $color_4;
+  
+	@media (max-width: 480px) {
+	  .title {
+		font-size: 18px;
+	  }
+  
+	  .text {
+		font-size: 14px;
+	  }
 	}
-}
-
-.commentInput.light {
-	background-color: $background-color_4;
-	color: $color_3;
-
-	&::placeholder {
-		color: $color_5;
-	}
-}
-
-.submitBtn {
-	padding: 10px 15px;
-	background-color: $background-color_5;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	color: $color_1;
-	transition: background-color 0.3s;
-
-	&:hover {
-		background-color: $background-color_6;
-	}
-}
-
-.commentList {
-	max-height: 300px;
-	overflow-y: auto;
-
-	@media (max-width: 768px) {
-		max-height: 200px;
-	}
-}
+  }
+  

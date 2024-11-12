@@ -26,8 +26,6 @@ const PostItem = ({ post }) => {
                 )}
                 <div className={`${s.title} ${theme === 'dark' ? s.dark : s.light}`}>{post.title}</div>
                 <p className={`${s.text} ${theme === 'dark' ? s.dark : s.light}`}>{post.text}</p>
-
-                
             </div>
         </NavLink>
     );

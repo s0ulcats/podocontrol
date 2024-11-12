@@ -1,79 +1,73 @@
-$color_1: #ff79a9;
-$color_2: #ff4081;
-$color_3: #888;
-$color_4: #ff4d4d;
-$background-color_1: #002b5c;
+// src/MessageItem/MessageItem.module.scss
 
+/* Основные стили для контейнера сообщения */
 .messageContainer {
-  background-color: $background-color_1;
+  background-color: #ffffff;
+  padding: 15px;
   border-radius: 8px;
-  padding: 12px;
-  margin: 10px 0;
+  margin-bottom: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 600px) {
-    padding: 10px;
-  }
-
-  @media (max-width: 768px) {
-    padding: 11px;
-  }
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Стиль для автора сообщения */
 .author {
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-
-  @media (max-width: 600px) {
-    font-size: 14px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 15px;
-  }
-}
-
-.icon {
-  margin-right: 5px;
-  color: $color_1;
-}
-
-.messageText {
-  margin: 5px 0;
   font-size: 16px;
-  line-height: 1.4;
-  color: $color_2;
-
-  @media (max-width: 600px) {
-    font-size: 14px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 15px;
-  }
-}
-
-.timestampContainer {
+  font-weight: bold;
+  color: #333333;
   display: flex;
   align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+/* Стиль для текста сообщения */
+.messageText {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+/* Контейнер для метки времени */
+.timestampContainer {
   font-size: 12px;
-  color: $color_3;
-
-  @media (max-width: 600px) {
-    font-size: 10px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 11px;
-  }
+  color: #999999;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.timeStamp {
-  margin-left: 5px;
+/* Стили для иконок */
+.icon {
+  color: #999999;
 }
 
+/* Стили для ошибки, если сообщение недоступно */
 .errorMessage {
-  color: $color_4;
-  font-style: italic;
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Стили для темной темы */
+.dark {
+  background-color: #2e2e2e;
+  color: #f1f1f1;
+}
+
+.dark .author {
+  color: #f1f1f1;
+}
+
+.dark .messageText {
+  color: #cccccc;
+}
+
+.dark .timestampContainer {
+  color: #bbbbbb;
+}
+
+.dark .icon {
+  color: #bbbbbb;
 }
