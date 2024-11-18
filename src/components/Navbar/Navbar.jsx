@@ -9,31 +9,30 @@ import s from './Navbar.module.scss';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
 
 const Navbar = () => {
-    const isAuth = useSelector(checkIsAuth);
-    const phone = useSelector((state) => state.user.user?.phone);
     const dispatch = useDispatch();
+    const isAuth = useSelector(checkIsAuth);
+    const { theme, toggleTheme } = useContext(ThemeContext);
+    const { user: authUser } = useSelector((state) => state.auth);
+    const phone = useSelector((state) => state.auth.user?.phone);
+
     const activeStyles = {
         color: '#ff79a9',
         fontWeight: 'bold',
     };
-    const { theme, toggleTheme } = useContext(ThemeContext);
-
-    const { user: authUser, loading: authLoading, error: authError } = useSelector((state) => state.auth);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token && !authUser) {
-            dispatch(getMe()); // Получаем данные пользователя, если токен существует
+            dispatch(getMe());
         }
     }, [dispatch, authUser]);
-    
-    // Логика выхода
+
     const logoutHandler = () => {
         dispatch(logout());
         localStorage.removeItem('token');
-        localStorage.removeItem('user'); // Удаляем данные о пользователе
+        localStorage.removeItem('user');
         toast('Successful log out');
-    };    
+    };
 
     return (
         <div className={`${s.nav} ${theme === 'dark' ? s.dark : s.light}`}>
@@ -67,6 +66,15 @@ const Navbar = () => {
                                     className={`${s.navLink} ${theme === 'dark' ? s.dark : s.light}`}
                                 >
                                     <AiOutlineUser /> Users
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                    to="/recordings"
+                                    className={`${s.navLink} ${theme === 'dark' ? s.dark : s.light}`}
+                                >
+                                    <AiOutlineUser /> Recordings
                                 </NavLink>
                             </li>
                         </>

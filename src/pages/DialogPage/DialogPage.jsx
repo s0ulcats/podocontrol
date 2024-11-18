@@ -1,27 +1,27 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { AiOutlineSend, AiOutlineMessage } from 'react-icons/ai';
+import { AiOutlineSend } from 'react-icons/ai';
 import axios from '../../utils/axios';
 import s from './DialogPage.module.scss';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
+import { BsFillXOctagonFill, BsImage } from 'react-icons/bs';
+import MessageItem from '../../components/MessageItem/MessageItem';
 
 const DialogPage = () => {
     const { id: dialogId } = useParams();
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const { theme } = useContext(ThemeContext);
+    const [image, setImage] = useState(null); // Используем `null`, чтобы сброс работал корректно
 
     const fetchMessages = async () => {
-        if (!dialogId) {
-            console.error('dialogId is undefined');
-            return;
-        }
+        if (!dialogId) return console.error('dialogId is undefined');
 
         try {
             const response = await axios.get(`/messages/${dialogId}`);
             setMessages(response.data);
         } catch (error) {
-            console.error('Error fetching messages:', error.response ? error.response.data : error.message);
+            console.error('Error fetching messages:', error.response?.data || error.message);
         }
     };
 
@@ -31,36 +31,62 @@ const DialogPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!dialogId || !message.trim()) {
-            console.error("dialogId is undefined or message is empty");
-            return;
-        }
+        if (!dialogId || !message.trim()) return console.error("dialogId is undefined or message is empty");
+
+        const formData = new FormData();
+        formData.append("message", message);
+        formData.append("dialogId", dialogId);
+        if (image) formData.append("image", image);
 
         try {
-            const response = await axios.post(`/messages/${dialogId}`, { 
-                message, 
-                dialogId 
+            const response = await axios.post(`/messages/${dialogId}`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' }
             });
             console.log('Message sent:', response.data);
             setMessage('');
+            setImage(null);
             fetchMessages();
         } catch (error) {
-            console.error('Error sending message:', error.response ? error.response.data : error.message);
+            console.error('Error sending message:', error.response?.data || error.message);
         }
+    };
+
+    const detachImageHandler = () => {
+        setImage(null);
     };
 
     return (
         <div className={`${s.dialogPage} ${theme === 'dark' ? s.dark : s.light}`}>
             <div className={`${s.messagesContainer} ${theme === 'dark' ? s.dark : s.light}`}>
-                {messages.map(msg => (
-                    <div key={msg._id} className={`${s.message} ${theme === 'dark' ? s.dark : s.light}`}>
-                        <AiOutlineMessage className={s.messageIcon} />
-                        <strong className={`${s.author} ${theme === 'dark' ? s.dark : s.light}`}>{msg.author?.username || 'Unavailable author'}:</strong>
-                        <span className={`${s.content} ${theme === 'dark' ? s.dark : s.light}`}>{msg.message || 'Not message'}</span>
-                    </div>
+                {messages.map((msg) => (
+                    <MessageItem key={msg._id} message={msg} /> // используем MessageItem для отображения каждого сообщения
                 ))}
             </div>
             <form onSubmit={handleSubmit} className={`${s.inputForm} ${theme === 'dark' ? s.dark : s.light}`}>
+                <label className={s.fileInputLabel}>
+                    <BsImage className={s.icon} />
+                    Add image
+                    <input
+                        type="file"
+                        className={s.fileInput}
+                        accept="image/*"
+                        onChange={(e) => setImage(e.target.files[0])}
+                    />
+                </label>
+
+                {image && (
+                    <div className={s.imageWrapper}>
+                        <img
+                            src={URL.createObjectURL(image)}
+                            alt="Preview"
+                            className={s.imagePreview}
+                        />
+                        <button type="button" className={s.detachButton} onClick={detachImageHandler}>
+                            <BsFillXOctagonFill />
+                        </button>
+                    </div>
+                )}
+
                 <input 
                     type="text" 
                     value={message} 

@@ -4,6 +4,7 @@ import postSlice from "./post/postSlice";
 import usersSlice from "./features/users/usersSlice";
 import dialogSlice from "./features/dialog/dialogSlice";
 import messageSlice from "./features/messages/messageSlice";
+import recordingSlice from './features/recording/recordingSlice';
 
 export const store = configureStore({
     reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
         dialog: dialogSlice,
         message: messageSlice,
         user: usersSlice,
+        recording: recordingSlice,
     },
 });

@@ -22,10 +22,10 @@ const ProfilePage = () => {
       navigate('/login');
       return;
     }
-    if (authUser._id) {
-      dispatch(getUserById(authUser._id));
+    if (authUser._id && !myProfile) {
+      dispatch(getUserById(authUser._id)); // Если еще нет профиля, загружаем его
     }
-  }, [dispatch, authUser, id, navigate]);
+  }, [dispatch, authUser, myProfile, id, navigate]);
 
   if (loading) return <Preloader />;
   if (error) return <p className={s.error}>Error: {error}</p>;
