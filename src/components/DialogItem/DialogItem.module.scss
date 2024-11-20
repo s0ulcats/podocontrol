@@ -1,6 +1,3 @@
-// src/Components/DialogItem/DialogItem.module.scss
-
-/* Общие стили для компонента DialogItem */
 .dialogItem {
   background-color: #ffffff;
   padding: 15px;
@@ -18,18 +15,15 @@
   }
 }
 
-/* Стили для ссылки */
 .link {
   text-decoration: none;
 }
 
-/* Стили для информации о диалоге */
 .info {
   display: flex;
   flex-direction: column;
 }
 
-/* Стили для имени пользователя */
 .username {
   font-size: 16px;
   font-weight: bold;
@@ -39,7 +33,6 @@
   gap: 10px;
 }
 
-/* Стили для даты */
 .date {
   font-size: 12px;
   color: #777777;
@@ -48,13 +41,11 @@
   gap: 5px;
 }
 
-/* Стили для иконок */
 .icon {
   color: #888888;
   font-size: 18px;
 }
 
-/* Стили для темной темы */
 .dark {
   background-color: #2e2e2e;
   color: #f1f1f1;
@@ -72,7 +63,6 @@
   color: #bbbbbb;
 }
 
-/* Стили для светлой темы */
 .light {
   background-color: #ffffff;
   color: #333333;
@@ -90,7 +80,6 @@
   color: #888888;
 }
 
-/* Стили для загрузки */
 .loading {
   text-align: center;
   font-size: 16px;

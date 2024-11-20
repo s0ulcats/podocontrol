@@ -6,13 +6,15 @@ import s from './DialogPage.module.scss';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 import { BsFillXOctagonFill, BsImage } from 'react-icons/bs';
 import MessageItem from '../../components/MessageItem/MessageItem';
+import { useTranslation } from 'react-i18next'; 
 
 const DialogPage = () => {
     const { id: dialogId } = useParams();
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const { theme } = useContext(ThemeContext);
-    const [image, setImage] = useState(null); // Используем `null`, чтобы сброс работал корректно
+    const [image, setImage] = useState(null);
+    const { t } = useTranslation(); 
 
     const fetchMessages = async () => {
         if (!dialogId) return console.error('dialogId is undefined');
@@ -42,12 +44,10 @@ const DialogPage = () => {
             const response = await axios.post(`/messages/${dialogId}`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
-            console.log('Message sent:', response.data);
             setMessage('');
             setImage(null);
             fetchMessages();
         } catch (error) {
-            console.error('Error sending message:', error.response?.data || error.message);
         }
     };
 
@@ -59,13 +59,13 @@ const DialogPage = () => {
         <div className={`${s.dialogPage} ${theme === 'dark' ? s.dark : s.light}`}>
             <div className={`${s.messagesContainer} ${theme === 'dark' ? s.dark : s.light}`}>
                 {messages.map((msg) => (
-                    <MessageItem key={msg._id} message={msg} /> // используем MessageItem для отображения каждого сообщения
+                    <MessageItem key={msg._id} message={msg} />
                 ))}
             </div>
             <form onSubmit={handleSubmit} className={`${s.inputForm} ${theme === 'dark' ? s.dark : s.light}`}>
                 <label className={s.fileInputLabel}>
                     <BsImage className={s.icon} />
-                    Add image
+                    {t('forms.add_image')}
                     <input
                         type="file"
                         className={s.fileInput}
@@ -91,11 +91,11 @@ const DialogPage = () => {
                     type="text" 
                     value={message} 
                     onChange={e => setMessage(e.target.value)} 
-                    placeholder="Enter message" 
+                    placeholder={t('messages.enter_message')} 
                     className={`${s.inputField} ${theme === 'dark' ? s.dark : s.light}`}
                 />
                 <button type="submit" className={`${s.sendButton} ${theme === 'dark' ? s.dark : s.light}`}>
-                    Send <AiOutlineSend className={s.sendIcon} />
+                    {t('buttons.send')} <AiOutlineSend className={s.sendIcon} />
                 </button>
             </form>
         </div>

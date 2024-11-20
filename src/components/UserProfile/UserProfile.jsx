@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
 import s from './UserProfile.module.scss';
-import PostItem from '../PostItem/PostItem';
 import { useNavigate } from 'react-router-dom';
 import Preloader from '../Preloader/Preloader';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
+import { useTranslation } from 'react-i18next'; 
 
-const UserProfile = ({ user, posts }) => {
+const UserProfile = ({ user }) => {
     const navigate = useNavigate();
     const { theme } = useContext(ThemeContext);
+    const { t } = useTranslation();
 
     if (!user) {
         return <Preloader />;
     }
 
     const avatar = user.username.trim().toUpperCase().split('').slice(0, 1).join('');
-    const userPosts = posts.filter(post => post.author === user._id);
 
     const handleDirectClick = () => {
         navigate(`/dialog/${user._id}`);
@@ -29,7 +29,7 @@ const UserProfile = ({ user, posts }) => {
                     <div className={s.phone}>{user.phone}</div>
                     <div className={s.status}>{user.status || ''}</div>
                     <button className={`${s.directButton} ${theme === 'dark' ? s.dark : s.light}`} onClick={handleDirectClick}>
-                        Direct
+                        {t('navigation.direct')}
                     </button>
                 </div>
             </div>

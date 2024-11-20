@@ -4,11 +4,14 @@ import Moment from 'react-moment';
 import { AiOutlineUser, AiOutlineCalendar } from 'react-icons/ai';
 import s from './PostItem.module.scss';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
+import Preloader from '../Preloader/Preloader';
+import { useTranslation } from 'react-i18next';
 
 const DialogItem = ({ dialog }) => {
+    const { t } = useTranslation();
     const { theme } = useContext(ThemeContext);
     if (!dialog) {
-        return <div className={s.loading}>Loading...</div>;
+        return <Preloader />
     }
 
     return (
@@ -17,7 +20,7 @@ const DialogItem = ({ dialog }) => {
                 <div className={s.info}>
                     <div className={s.username}>
                         <AiOutlineUser className={s.icon} />
-                        {dialog.username || 'Неизвестный пользователь'}
+                        {dialog.username || t('messages.unknown_user')}
                     </div>
                     <div className={s.date}>
                         <AiOutlineCalendar className={s.icon} />

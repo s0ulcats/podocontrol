@@ -1,14 +1,17 @@
 import React from 'react';
 import Moment from 'react-moment';
 import { AiOutlineUser, AiOutlineClockCircle } from 'react-icons/ai';
+import { useTranslation } from 'react-i18next';
 import s from './MessageItem.module.scss';
 
 const MessageItem = ({ message }) => {
+    const { t } = useTranslation();
+
     if (!message || !message.author) {
-        return <p className={s.errorMessage}>Message unavailable</p>;
+        return <p className={s.errorMessage}>{t('messages.message_unavailable')}</p>;
     }
 
-    console.log('Image URL:', message.imgUrl); // Добавим лог для проверки пути к изображению
+    console.log('Image URL:', message.imgUrl);
 
     return (
         <div className={s.messageContainer}>
@@ -22,7 +25,7 @@ const MessageItem = ({ message }) => {
             {message.imgUrl && (
                 <img 
                     src={`http://localhost:3001/${message.imgUrl}`} 
-                    alt="Attached" 
+                    alt={t('messages.attached')} 
                     className={s.messageImage} 
                 />
             )}

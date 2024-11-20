@@ -6,16 +6,16 @@ import cn from 'classnames';
 import * as calendar from './calendar';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
 import { getMe } from '../../redux/features/auth/authSlice';
+import { useTranslation } from 'react-i18next'; // Import translation hook
 
 const Calendar = ({
   date = new Date(),
   years = [2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031],
-  monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-  weekDayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   onChange = Function.prototype,
   procedureTitle
 }) => {
-  const { theme, toggleTheme } = useContext(ThemeContext)
+  const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
   const [state, setState] = useState({ date, currentDate: new Date(), selectedDate: null });
   const [showTimeSlots, setShowTimeSlots] = useState(false);
   const [timeSlots, setTimeSlots] = useState([]);
@@ -36,6 +36,18 @@ const Calendar = ({
 
   const year = state.date.getFullYear();
   const month = state.date.getMonth();
+  
+  const monthNames = [
+    t('calendar.months.january'), t('calendar.months.february'), t('calendar.months.march'), t('calendar.months.april'),
+    t('calendar.months.may'), t('calendar.months.june'), t('calendar.months.july'), t('calendar.months.august'),
+    t('calendar.months.september'), t('calendar.months.october'), t('november'), t('calendar.months.december')
+  ]
+  
+  const weekDayNames = [
+    t('calendar.days.monday'), t('calendar.days.tuesday'), t('calendar.days.wednesday'), t('calendar.days.thursday'),
+    t('calendar.days.friday'), t('calendar.days.saturday'), t('calendar.days.sunday')
+  ];
+  
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -60,8 +72,6 @@ const Calendar = ({
   const hideTooltip = () => setTooltipVisible(false);
   const showPhoneTooltip = () => setPhoneTooltipVisible(true);
   const hidePhoneTooltip = () => setPhoneTooltipVisible(false);
-
-
 
   const handleDayClick = (selectedDate) => {
     setState({ ...state, selectedDate });
@@ -134,7 +144,7 @@ const Calendar = ({
         <tbody>
           {monthData.map((week, idx) => (
             <tr key={idx} className={s.week}>
-              {week.map((date, idx) => date ?
+              {week.map((date, idx) => date ? 
                 <td
                   key={idx}
                   className={cn(s.day, {
@@ -167,43 +177,28 @@ const Calendar = ({
                 className={cn(s.timeSlot, { [s.booked]: !!booking })}
                 onClick={
                   booking
-                    ? () => setViewBookingDetails(booking) // Открыть форму с деталями записи
-                    : () => handleTimeSlotClick(time) // Открыть форму записи
+                    ? () => setViewBookingDetails(booking)
+                    : () => handleTimeSlotClick(time)
                 }
               >
                 {time}
-                {booking && <span className={s.booked}> (Занято)</span>}
+                {booking && <span className={s.booked}> ({t('booking.booked')})</span>}
               </div>
             );
           })}
         </div>
       )}
 
-      {(phone === '0668445985' || phone === '0507335098') && viewBookingDetails && (
-        <div className={s.modal}>
-          <div className={s.modalContent}>
-            <h2>Детали записи</h2>
-            <p><strong>Имя:</strong> {viewBookingDetails.username}</p>
-            <p><strong>Телефон:</strong> {viewBookingDetails.phone}</p>
-            <p><strong>Процедура:</strong> {viewBookingDetails.procedure}</p>
-            <p><strong>Дата:</strong> {viewBookingDetails.date}</p>
-            <p><strong>Время:</strong> {viewBookingDetails.time}</p>
-            <button onClick={() => setViewBookingDetails(null)}>Закрыть</button>
-          </div>
-        </div>
-      )}
-
-
       {showRegistrationForm && (
         <div className={s.modal}>
           <form onSubmit={handleSubmit}>
-            <h2>Запись</h2>
+            <h2>{t('booking.booking')}</h2>
             <label
               onMouseEnter={showTooltip}
               onMouseLeave={hideTooltip}
               className={s.tooltipContainer}
             >
-              Имя Фамилия:
+              {t('booking.name_surname')}:
               <input
                 type="text"
                 value={username}
@@ -213,7 +208,7 @@ const Calendar = ({
               />
               {tooltipVisible && (
                 <span className={s.tooltip}>
-                  Если это указано не ваше имя, поменяйте его в настройках.
+                  {t('tooltips.name')}
                 </span>
               )}
             </label>
@@ -223,7 +218,7 @@ const Calendar = ({
               onMouseLeave={hidePhoneTooltip}
               className={s.tooltipContainer}
             >
-              Телефон:
+              {t('booking.phone')}:
               <input
                 type="tel"
                 value={phone}
@@ -233,20 +228,20 @@ const Calendar = ({
               />
               {phoneTooltipVisible && (
                 <span className={s.tooltip}>
-                  Если это не ваш номер телефона, измените его в настройках.
+                  {t('tooltips.phone')}
                 </span>
               )}
             </label>
 
-            <label>Процедура:
+            <label>{t('booking.procedure')}:
               <input type="text" value={procedureTitle} disabled />
             </label>
 
-            <label>Время:
+            <label>{t('booking.time')}:
               <input type="text" value={selectedTime} disabled />
             </label>
-            <button type="submit" disabled={!selectedTime || !username || !phone}>Подтвердить</button>
-            <button type="button" onClick={() => setShowRegistrationForm(false)}>Отмена</button>
+            <button type="submit" disabled={!selectedTime || !username || !phone}>{t('buttons.confirm')}</button>
+            <button type="button" onClick={() => setShowRegistrationForm(false)}>{t('buttons.cancel')}</button>
           </form>
         </div>
       )}

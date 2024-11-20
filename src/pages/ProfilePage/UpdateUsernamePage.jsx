@@ -4,8 +4,10 @@ import { getUserById, updateAccountData } from '../../redux/features/users/users
 import s from './UpdateUsernamePage.module.scss';
 import { AiOutlineEdit, AiOutlineCheck, AiOutlineClose, AiOutlineUser, AiOutlinePhone } from 'react-icons/ai';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const UpdateUsername = ({ initialUsername, initialPhone, userId }) => {
+    const { t } = useTranslation();  // useTranslation hook
     const [isEditing, setIsEditing] = useState(false);
     const [username, setUsername] = useState(initialUsername || '');
     const [phone, setPhone] = useState(initialPhone || '');
@@ -24,10 +26,9 @@ const UpdateUsername = ({ initialUsername, initialPhone, userId }) => {
     };
 
     const handleSave = () => {
-        // Simple validation
         const newErrors = { username: '', phone: '' };
-        if (!username) newErrors.username = 'Username cannot be empty';
-        if (phone && !/^\+?\d{10,15}$/.test(phone)) newErrors.phone = 'Invalid phone number';
+        if (!username) newErrors.username = t('errors.error_username_empty');
+        if (phone && !/^\+?\d{10,15}$/.test(phone)) newErrors.phone = t('errors.error_invalid_phone');
         setErrors(newErrors);
 
         if (!newErrors.username && !newErrors.phone) {

@@ -6,6 +6,7 @@ import s from './EditPostPage.module.scss';
 import { updatePost } from '../../redux/post/postSlice.js';
 import { AiOutlineFileImage, AiOutlineEdit, AiOutlineSave, AiOutlineClose } from 'react-icons/ai';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext.jsx';
+import { useTranslation } from 'react-i18next'; 
 
 const EditPostPage = () => {
   const [title, setTitle] = useState('');
@@ -16,6 +17,7 @@ const EditPostPage = () => {
   const navigate = useNavigate();
   const params = useParams();
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation(); 
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ const EditPostPage = () => {
       await dispatch(updatePost({ id: params.id, params: updatedPost })).unwrap();
       navigate(`/posts`);
     } catch (error) {
-      console.error('Error updating post:', error);
+      console.error(t('errors.error_updating_post'), error);
     }
   };
 
@@ -56,7 +58,7 @@ const EditPostPage = () => {
     <form onSubmit={submitHandler} className={`${s.editPostPage} ${theme === 'dark' ? s.dark : s.light}`}>
       <label className={s.fileInputLabel}>
         <AiOutlineFileImage className={s.icon} />
-        Add image:
+        {t('forms.add_image')}
         <input
           type="file"
           className={s.fileInput}
@@ -86,10 +88,10 @@ const EditPostPage = () => {
 
       <label>
         <AiOutlineEdit className={s.icon} />
-        Title:
+        {t('forms.title')}:
         <input
           type="text"
-          placeholder="Title"
+          placeholder={t('forms.placeholders.title')}
           value={title}
           className={`${s.inputField} ${theme === 'dark' ? s.dark : s.light}`}
           onChange={(e) => setTitle(e.target.value)}
@@ -98,10 +100,10 @@ const EditPostPage = () => {
 
       <label>
         <AiOutlineEdit className={s.icon} />
-        Text:
+        {t('forms.text')}:
         <textarea
           value={text}
-          placeholder="Post text"
+          placeholder={t('forms.placeholders.text')}
           className={`${s.textareaField} ${theme === 'dark' ? s.dark : s.light}`}
           onChange={(e) => setText(e.target.value)}
         ></textarea>
@@ -109,10 +111,10 @@ const EditPostPage = () => {
 
       <div className={s.buttonGroup}>
         <button type="submit" className={`${s.saveButton} ${theme === 'dark' ? s.dark : s.light}`}>
-          <AiOutlineSave className={s.iconButton} /> Save
+          <AiOutlineSave className={s.iconButton} /> {t('forms.save')}
         </button>
         <button type="button" className={`${s.cancelButton} ${theme === 'dark' ? s.dark : s.light}`} onClick={clearFormHandler}>
-          <AiOutlineClose className={s.iconButton} /> Cancel
+          <AiOutlineClose className={s.iconButton} /> {t('buttons.cancel')}
         </button>
       </div>
     </form>

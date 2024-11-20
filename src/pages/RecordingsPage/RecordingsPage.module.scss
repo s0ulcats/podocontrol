@@ -12,19 +12,16 @@
     margin-top: 20px;
   }
 
-  // Тема для светлого фона
   &.light {
     background-color: #f5f5f5;
     color: #333;
   }
 
-  // Тема для тёмного фона
   &.dark {
     background-color: #2d2d2d;
     color: #fff;
   }
 
-  // Адаптация для мобильных устройств
   @media (max-width: 768px) {
     padding: 10px;
 
@@ -37,7 +34,6 @@
     }
   }
 
-  // Адаптация для маленьких экранов
   @media (max-width: 480px) {
     h1 {
       font-size: 1.2rem;

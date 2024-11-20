@@ -4,11 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkIsAuth, loginUser } from '../../redux/features/auth/authSlice';
 import { toast } from 'react-toastify';
-import { AiOutlineUser, AiOutlineLock, AiOutlinePhone } from 'react-icons/ai';
+import { AiOutlineLock, AiOutlinePhone } from 'react-icons/ai';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const { status } = useSelector(state => state.auth);
@@ -16,6 +16,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const isAuth = useSelector(checkIsAuth);
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
@@ -26,24 +27,23 @@ const LoginPage = () => {
 
   const handleSubmit = async () => {
     try {
-      await dispatch(loginUser({ username, phone, password })).unwrap();
-      setUsername('');
+      await dispatch(loginUser({ phone, password })).unwrap();
       setPhone('');
       setPassword('');
     } catch (error) {
-      toast.error('Invalid Credentials');
+      toast.error(t('auth.invalid_credentials'));
     }
   };
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className={`${s.form} ${theme === 'dark' ? s.dark : s.light}`}>
-      <h1 className={s.title}>Authorization</h1>
+      <h1 className={s.title}>{t('auth.authorization')}</h1>
       <label className={s.label}>
         <AiOutlinePhone className={s.icon} />
-        Phone Number:
+        {t('auth.phone_number')}:
         <input
           type="text"
-          placeholder='Phone Number'
+          placeholder={t('forms.placeholders.phone')}
           value={phone}
           className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
           onChange={(e) => setPhone(e.target.value)}
@@ -52,10 +52,10 @@ const LoginPage = () => {
       </label>
       <label className={s.label}>
         <AiOutlineLock className={s.icon} />
-        Password:
+        {t('auth.password')}:
         <input
           type="password"
-          placeholder='Password'
+          placeholder={t('forms.placeholders.password')}
           value={password}
           className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
           onChange={(e) => setPassword(e.target.value)}
@@ -64,8 +64,12 @@ const LoginPage = () => {
       </label>
 
       <div className={s.buttonGroup}>
-        <button type='submit' className={s.submitButton} onClick={handleSubmit}>Enter</button>
-        <Link to={'/register'} className={`${s.link} ${theme === 'dark' ? s.dark : s.light}`}>Do not have an account?</Link>
+        <button type='submit' className={s.submitButton} onClick={handleSubmit}>
+          {t('buttons.enter')}
+        </button>
+        <Link to={'/register'} className={`${s.link} ${theme === 'dark' ? s.dark : s.light}`}>
+          {t('auth.no_account')}
+        </Link>
       </div>
     </form>
   );

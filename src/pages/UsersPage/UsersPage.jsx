@@ -6,8 +6,10 @@ import s from './UsersPage.module.scss';
 import { AiOutlineUser } from 'react-icons/ai';
 import Preloader from '../../components/Preloader/Preloader';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const UsersPage = () => {
+  const { t } = useTranslation(); // Инициализируем t для перевода
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { users, loading, error } = useSelector((state) => state.user);
@@ -18,7 +20,7 @@ const UsersPage = () => {
   }, [dispatch]);
 
   if (loading) return <Preloader />;
-  if (error) return <p className={s.error}>Error: {error}</p>;
+  if (error) return <p className={s.error}>{t('messages.error_message', { error })}</p>; // Перевод ошибки с параметром
 
   const handleUserClick = (id) => {
     navigate(`/user/${id}`);
@@ -26,7 +28,7 @@ const UsersPage = () => {
 
   return (
     <div className={`${s.container} ${theme === 'dark' ? s.dark : s.light}`}>
-      <h1 className={s.title}>Users</h1>
+      <h1 className={s.title}>{t('users_page.users_page_title')}</h1> {/* Перевод заголовка */}
       <div className={s.userGrid}>
         {users.length ? (
           users.map((user) => (
@@ -39,13 +41,13 @@ const UsersPage = () => {
                 <AiOutlineUser className={s.userIcon} />
               </div>
               <div className={s.userInfo}>
-                <div className={s.username}>{user.username}</div>
-                <div className={s.phone}>{user.phone}</div>
+                <div className={s.username}>{user.username || t('messages.unknown_user')}</div> {/* Добавлено fallback для имени */}
+                <div className={s.phone}>{user.phone || t('messages.unknown_user')}</div>
               </div>
             </div>
           ))
         ) : (
-          <p>No users found.</p>
+          <p>{t('users_page.no_users_found')}</p>
         )}
       </div>
     </div>

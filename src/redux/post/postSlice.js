@@ -35,9 +35,9 @@ export const updatePost = createAsyncThunk('post/updatePost', async ({ id, param
   }
 });
 
-export const getAllPosts = createAsyncThunk('post/getAllPosts', async () => {
+export const getAllPosts = createAsyncThunk('post/getAllPosts', async (page = 1) => {
   try {
-    const { data } = await axios.get('/posts');
+    const { data } = await axios.get(`/posts?page=${page}`);
     return data;
   } catch (error) {
     throw error;

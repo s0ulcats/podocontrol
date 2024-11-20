@@ -5,6 +5,7 @@ import { createPost } from '../../redux/post/postSlice';
 import { BsFillXOctagonFill, BsImage } from "react-icons/bs";
 import s from './AddPostPage.module.scss';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const AddPostPage = () => {
     const [title, setTitle] = useState('');
@@ -14,10 +15,11 @@ const AddPostPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { theme } = useContext(ThemeContext);
+    const { t } = useTranslation();
 
     const submitHandler = async () => {
         if (!title || !text) {
-            setError('Title and text are required');
+            setError(t.error_required);
             return;
         }
         try {
@@ -29,7 +31,7 @@ const AddPostPage = () => {
             await dispatch(createPost(data));
             navigate('/');
         } catch (error) {
-            setError('Failed to create post. Please try again later.');
+            setError(t.error_creation_failed);
             console.error(error);
         }
     };
@@ -47,13 +49,13 @@ const AddPostPage = () => {
 
     return (
         <form onSubmit={(e) => e.preventDefault()} className={`${s.addPostPage} ${theme === 'dark' ? s.dark : s.light}`}>
-            <h1 className={s.title}>Add new post</h1>
+            <h1 className={s.title}>{t('navigation.add_post')}</h1>
 
             {error && <p className={s.error}>{error}</p>}
 
             <label className={s.fileInputLabel}>
                 <BsImage className={s.icon} />
-                Add image
+                {t('forms.add_image')}
                 <input
                     type="file"
                     className={s.fileInput}
@@ -78,10 +80,10 @@ const AddPostPage = () => {
             </div>
 
             <label className={s.inputLabel}>
-                Title:
+                {t('forms.title')}:
                 <input
                     type="text"
-                    placeholder="Title"
+                    placeholder={t('forms.placeholders.title')}
                     value={title}
                     className={`${s.inputField} ${theme === 'dark' ? s.dark : s.light}`}
                     onChange={(e) => setTitle(e.target.value)}
@@ -89,10 +91,10 @@ const AddPostPage = () => {
             </label>
 
             <label className={s.inputLabel}>
-                Text:
+                {t('forms.text')}:
                 <textarea
                     value={text}
-                    placeholder="Text"
+                    placeholder={t('placeholders.text')}
                     className={`${s.textareaField} ${theme === 'dark' ? s.dark : s.light}`}
                     onChange={(e) => setText(e.target.value)}
                 ></textarea>
@@ -100,10 +102,10 @@ const AddPostPage = () => {
 
             <div className={s.buttonGroup}>
                 <button className={`${s.submitBtn} ${theme === 'dark' ? s.dark : s.light}`} onClick={submitHandler}>
-                    Add
+                    {t('forms.submit')}
                 </button>
                 <button className={`${s.cancelBtn} ${theme === 'dark' ? s.dark : s.light}`} type="button" onClick={clearFormHandler}>
-                    Cancel
+                    {t('buttons.cancel')}
                 </button>
             </div>
         </form>

@@ -6,8 +6,10 @@ import { checkIsAuth, registerUser } from '../../redux/features/auth/authSlice';
 import { toast } from 'react-toastify';
 import { AiOutlineUser, AiOutlineLock, AiOutlinePhone } from 'react-icons/ai';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const RegisterPage = () => {
+  const { t } = useTranslation(); // Инициализация t для перевода
   const [username, setUsername] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
@@ -27,11 +29,10 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Валидация
     const newErrors = { username: '', phone: '', password: '' };
-    if (!username) newErrors.username = 'Username is required';
-    if (!/^\+?\d{10,15}$/.test(phone)) newErrors.phone = 'Invalid phone number';
-    if (password.length < 6) newErrors.password = 'Password must be at least 6 characters long';
+    if (!username) newErrors.username = t('auth.errors.username_required');
+    if (!/^\+?\d{10,15}$/.test(phone)) newErrors.phone = t('auth.errors.invalid_phone');
+    if (password.length < 6) newErrors.password = t('auth.errors.password_length');
     setErrors(newErrors);
 
     if (!newErrors.username && !newErrors.phone && !newErrors.password) {
@@ -39,20 +40,20 @@ const RegisterPage = () => {
       setUsername('');
       setPhone('');
       setPassword('');
-      toast.success('Registration successful!');
+      toast.success(t('auth.toast.registration_success'));
     } else {
-      toast.error('Please correct the errors');
+      toast.error(t('auth.toast.correct_errors'));
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className={`${s.form} ${theme === 'dark' ? s.dark : s.light}`}>
-      <h1 className={s.title}>Registration</h1>
+      <h1 className={s.title}>{t('auth.registration_title')}</h1>
       <label>
         <AiOutlineUser className={s.icon} />
         <input
           type="text"
-          placeholder="Enter your username"
+          placeholder={t('forms.placeholders.username')}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
@@ -64,7 +65,7 @@ const RegisterPage = () => {
         <AiOutlinePhone className={s.icon} />
         <input
           type="text"
-          placeholder="Enter your phone number"
+          placeholder={t('forms.placeholders.phone')}
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
@@ -76,7 +77,7 @@ const RegisterPage = () => {
         <AiOutlineLock className={s.icon} />
         <input
           type="password"
-          placeholder="Enter your password"
+          placeholder={t('forms.placeholders.password')}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
@@ -85,8 +86,10 @@ const RegisterPage = () => {
         {errors.password && <p className="error-text">{errors.password}</p>}
       </label>
       <div className={s.actions}>
-        <button type="submit" className={s.button}>Submit</button>
-        <Link to="/login" className={`${s.link} ${theme === 'dark' ? s.dark : s.light}`}>Already have an account?</Link>
+        <button type="submit" className={s.button}>{t('buttons.submit_button')}</button>
+        <Link to="/login" className={`${s.link} ${theme === 'dark' ? s.dark : s.light}`}>
+          {t('auth.already_have_account')}
+        </Link>
       </div>
     </form>
   );

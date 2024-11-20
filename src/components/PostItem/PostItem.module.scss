@@ -1,4 +1,3 @@
-/* Общие стили для компонента PostItem */
 .post {
   background-color: #ffffff;
   padding: 20px;
@@ -13,12 +12,10 @@
   }
 }
 
-/* Стили для ссылки */
 .link {
   text-decoration: none;
 }
 
-/* Стили для заголовка поста */
 .title {
   font-size: 20px;
   font-weight: bold;
@@ -27,7 +24,6 @@
   transition: color 0.3s ease;
 }
 
-/* Стили для текста поста */
 .text {
   font-size: 14px;
   color: #666666;
@@ -36,7 +32,6 @@
   transition: color 0.3s ease;
 }
 
-/* Стили для контейнера с изображением */
 .imageWrapper {
   width: 100%;
   height: 200px;
@@ -46,14 +41,12 @@
   position: relative;
 }
 
-/* Стили для изображения */
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Стили для плейсхолдера */
 .placeholder {
   background-color: #f1f1f1;
   height: 200px;
@@ -65,7 +58,6 @@
   border-radius: 8px;
 }
 
-/* Стили для информации (просмотры, комментарии) */
 .info {
   display: flex;
   justify-content: space-between;
@@ -74,14 +66,12 @@
   color: #777777;
 }
 
-/* Стили для иконок */
 .icon {
   color: #888888;
   font-size: 18px;
   margin-right: 5px;
 }
 
-/* Стили для темной темы */
 .dark {
   background-color: #2e2e2e;
   color: #f1f1f1;
@@ -103,7 +93,6 @@
   color: #bbbbbb;
 }
 
-/* Стили для светлой темы */
 .light {
   background-color: #ffffff;
   color: #333333;

@@ -20,7 +20,7 @@ export const getAllUsers = createAsyncThunk('user/getAllUsers', async (_, { reje
 export const updateAccountData = createAsyncThunk('user/updateAccountData', async ({ id, params }) => {
     try {
         const { data } = await axios.put(`/users/${id}`, params);
-        return data; // Возвращаем полный объект пользователя с обновленным именем
+        return data;
     } catch (error) {
         throw error;
     }
@@ -67,7 +67,7 @@ export const usersSlice = createSlice({
                 state.error = action.payload;
             })
             .addCase(updateAccountData.fulfilled, (state, action) => {
-                state.user = action.payload; // Обновляем user целиком, чтобы получить новые данные
+                state.user = action.payload;
             })            
     },
 });
