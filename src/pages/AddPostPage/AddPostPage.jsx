@@ -94,7 +94,7 @@ const AddPostPage = () => {
                 {t('forms.text')}:
                 <textarea
                     value={text}
-                    placeholder={t('placeholders.text')}
+                    placeholder={t('forms.placeholders.text')}
                     className={`${s.textareaField} ${theme === 'dark' ? s.dark : s.light}`}
                     onChange={(e) => setText(e.target.value)}
                 ></textarea>

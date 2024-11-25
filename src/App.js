@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getMe } from './redux/features/auth/authSlice';
 import Layout from './components/Layout/Layout.jsx';
 import { ToastContainer } from 'react-toastify';
+import ContactModalWindow from './components/ContactModalWindow/ContactModalWindow.jsx';
 
 const MainPage = React.lazy(() => import("./pages/MainPage/MainPage.jsx"));
 const AddPostPage = React.lazy(() => import("./pages/AddPostPage/AddPostPage.jsx"));
@@ -41,6 +42,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/post/:id" element={<PostPage />} />
           <Route path="/recordings" element={<RecordingsPage />} />
+          <Route path="/cw" element={<ContactModalWindow />} />
         </Routes>
       </Suspense>
       <ToastContainer position="bottom-right" />

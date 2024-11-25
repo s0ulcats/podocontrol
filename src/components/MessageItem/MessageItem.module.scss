@@ -62,3 +62,60 @@
 .dark .icon {
   color: #bbbbbb;
 }
+
+/* Стиль для изображения */
+.imageWrapper {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.messageImage {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.messageImage:hover {
+  transform: scale(1.05);
+}
+
+/* Модальное окно для картинки */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px;
+}
+
+.modalContent {
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.modalImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Мобильная оптимизация */
+@media (max-width: 768px) {
+  .messageImage {
+    width: 90%;
+  }
+
+  .modalImage {
+    width: 100%;
+  }
+}

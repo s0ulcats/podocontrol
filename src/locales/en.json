@@ -5,7 +5,7 @@
     "users": "Users",
     "recordings": "Recordings",
     "logout": "Log out",
-    "profile": "Profile",
+    "settings": "Settings",
     "direct": "Direct"
   },
   "messages": {
@@ -103,6 +103,7 @@
     "phone": "Phone",
     "procedure": "Procedure",
     "time": "Time",
+    "date": "Date",
     "bookProcedure": "Book Procedure",
     "selected_procedure": "Selected Procedure",
     "booked": "Busy",

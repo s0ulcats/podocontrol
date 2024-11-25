@@ -7,6 +7,7 @@ import * as calendar from './calendar';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
 import { getMe } from '../../redux/features/auth/authSlice';
 import { useTranslation } from 'react-i18next'; // Import translation hook
+import { useNavigate } from 'react-router-dom';
 
 const Calendar = ({
   date = new Date(),
@@ -27,8 +28,10 @@ const Calendar = ({
   const [phoneTooltipVisible, setPhoneTooltipVisible] = useState(false);
   const phone = useSelector((state) => state.auth.user?.phone);
   const username = useSelector((state) => state.auth.user?.username);
+  const id = useSelector((state) => state.auth.user?._id);
   const { user: authUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const recordings = useSelector(state => state.recording.recordings);
   const monthSelect = useRef(null);
@@ -37,17 +40,21 @@ const Calendar = ({
   const year = state.date.getFullYear();
   const month = state.date.getMonth();
   
+  const handleUserClick = (id) => {
+    navigate(`/user/${id}`);
+  };
+
   const monthNames = [
     t('calendar.months.january'), t('calendar.months.february'), t('calendar.months.march'), t('calendar.months.april'),
     t('calendar.months.may'), t('calendar.months.june'), t('calendar.months.july'), t('calendar.months.august'),
     t('calendar.months.september'), t('calendar.months.october'), t('november'), t('calendar.months.december')
   ]
-  
+
   const weekDayNames = [
     t('calendar.days.monday'), t('calendar.days.tuesday'), t('calendar.days.wednesday'), t('calendar.days.thursday'),
     t('calendar.days.friday'), t('calendar.days.saturday'), t('calendar.days.sunday')
   ];
-  
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -144,7 +151,7 @@ const Calendar = ({
         <tbody>
           {monthData.map((week, idx) => (
             <tr key={idx} className={s.week}>
-              {week.map((date, idx) => date ? 
+              {week.map((date, idx) => date ?
                 <td
                   key={idx}
                   className={cn(s.day, {
@@ -169,20 +176,28 @@ const Calendar = ({
           {timeSlots.map((time, idx) => {
             const booking = recordings.find(
               (app) => app.date === selectedDateText && app.time === time
-            );
+             );
+
+            const isOwner = booking && (booking.phone === '0507335098' || booking.phone === '0668445985');
 
             return (
               <div
                 key={idx}
                 className={cn(s.timeSlot, { [s.booked]: !!booking })}
-                onClick={
-                  booking
-                    ? () => setViewBookingDetails(booking)
-                    : () => handleTimeSlotClick(time)
-                }
+                onClick={() => {
+                  if (isOwner) {
+                    setViewBookingDetails(booking); // Показать детали бронирования для владельца
+                  } else if (!booking) {
+                    handleTimeSlotClick(time); // Позволить создать новое бронирование
+                  }
+                }}
               >
                 {time}
-                {booking && <span className={s.booked}> ({t('booking.booked')})</span>}
+                {booking && (
+                  <span className={s.booked}>
+                    {isOwner ? ` (${t('booking.booked')})` : ` (${t('booking.booked')})`}
+                  </span>
+                )}
               </div>
             );
           })}
@@ -245,6 +260,16 @@ const Calendar = ({
           </form>
         </div>
       )}
+      {viewBookingDetails && (
+  <div className={s.modal}>
+    <h2>{t('booking.details_of_booking')}</h2>
+    <p onClick={() => handleUserClick(id)} >{t('booking.name_surname')}: {viewBookingDetails.username}</p>
+    <p>{t('booking.phone')}: {viewBookingDetails.phone}</p>
+    <p>{t('booking.procedure')}: {viewBookingDetails.procedure}</p>
+    <p>{t('booking.time')}: {viewBookingDetails.time}</p>
+    <button onClick={() => setViewBookingDetails(null)}>{t('buttons.cancel')}</button>
+  </div>
+)}
     </div>
   );
 };

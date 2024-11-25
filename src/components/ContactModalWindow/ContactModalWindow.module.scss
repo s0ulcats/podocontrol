@@ -1,0 +1,29 @@
+.callButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px; /* Размер кнопки */
+  height: 100px;
+  border: none;
+  background: none; /* Полностью убираем фон */
+  cursor: pointer;
+
+  .callImage {
+    width: 70px; /* Адаптивный размер изображения */
+    height: 70px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .callButton {
+    width: 80px;
+    height: 80px;
+
+    .callImage {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}

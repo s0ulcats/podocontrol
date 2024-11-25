@@ -5,7 +5,7 @@
     "users": "Пользователи",
     "recordings": "Записи",
     "logout": "Выйти",
-    "profile": "Профиль",
+    "settings": "Настройки",
     "direct": "Сообщение"
   },
   "messages": {
@@ -103,6 +103,7 @@
     "phone": "Телефон",
     "procedure": "Процедура",
     "time": "Время",
+    "date": "Дата",
     "bookProcedure": "Записаться на процедуру",
     "selected_procedure": "Выбранная процедура",
     "booked": "Занято",

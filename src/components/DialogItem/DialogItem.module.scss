@@ -85,3 +85,48 @@
   font-size: 16px;
   color: #888888;
 }
+
+/* Мобильная оптимизация */
+@media (max-width: 768px) {
+  .dialogItem {
+    padding: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .username {
+    font-size: 14px;  /* Уменьшаем размер шрифта для мобильных устройств */
+    gap: 8px;
+  }
+
+  .date {
+    font-size: 10px;
+    gap: 4px;
+  }
+
+  .icon {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialogItem {
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .username {
+    font-size: 12px;  /* Уменьшаем размер шрифта для маленьких экранов */
+    gap: 6px;
+  }
+
+  .date {
+    font-size: 8px;
+    gap: 3px;
+  }
+
+  .icon {
+    font-size: 14px;
+  }
+}

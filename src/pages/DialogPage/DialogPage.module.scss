@@ -15,42 +15,60 @@
   margin-bottom: 20px;
 }
 
-.message {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: var(--message-bg);
-  color: var(--text-color);
-  position: relative;
-}
-
-.messageIcon {
-  margin-right: 10px;
-}
-
-.author {
-  font-weight: bold;
-}
-
-.content {
-  margin-left: 5px;
-  color: var(--message-content-color);
-}
-
 .inputForm {
   display: flex;
   align-items: center;
   padding: 10px;
   border-top: 1px solid var(--border-color);
+  gap: 10px;
+  flex-wrap: wrap; // Позволяет перенос элементов
+
+  & > * {
+    flex-shrink: 0; // Предотвращает сжатие элементов
+  }
+}
+
+.fileInputLabel {
+  position: relative;
+  cursor: pointer;
+}
+
+.fileInputLabel .icon {
+  font-size: 2rem;
+}
+
+.fileInput {
+  display: none;
+}
+
+.imageWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.imagePreview {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.detachButton {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  position: absolute;
+  top: -5px;
+  right: -5px;
 }
 
 .inputField {
   flex-grow: 1;
   padding: 10px;
   border-radius: 20px;
-  margin-right: 10px;
   border: 1px solid #ccc;
   background-color: var(--input-bg);
   color: var(--input-text-color);
@@ -75,6 +93,54 @@
 
 .sendIcon {
   margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+  .inputForm {
+    justify-content: space-between; // Уравновешивает элементы по ширине
+  }
+
+  .fileInputLabel {
+    order: 1; // Выставляет порядок для иконки выбора изображения
+  }
+
+  .inputField {
+    flex: 1; // Инпут занимает оставшееся пространство
+    min-width: 60%; // Минимальная ширина для читаемости
+    order: 2;
+  }
+
+  .sendButton {
+    order: 3; // Кнопка отправки идет последней
+  }
+
+  .imageWrapper {
+    order: 4; // Превью изображения ниже остальных элементов
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .inputField {
+    min-width: 50%; // Ещё меньше для самых узких экранов
+    font-size: 14px;
+  }
+
+  .sendButton {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .fileInputLabel .icon {
+    font-size: 1.2rem;
+  }
+
+  .imagePreview {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 .light {

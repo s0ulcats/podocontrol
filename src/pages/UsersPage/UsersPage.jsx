@@ -28,7 +28,7 @@ const UsersPage = () => {
 
   return (
     <div className={`${s.container} ${theme === 'dark' ? s.dark : s.light}`}>
-      <h1 className={s.title}>{t('users_page.users_page_title')}</h1> {/* Перевод заголовка */}
+      <h1 className={s.title}>{t('users_page.users_page_title')}</h1>
       <div className={s.userGrid}>
         {users.length ? (
           users.map((user) => (
@@ -41,7 +41,7 @@ const UsersPage = () => {
                 <AiOutlineUser className={s.userIcon} />
               </div>
               <div className={s.userInfo}>
-                <div className={s.username}>{user.username || t('messages.unknown_user')}</div> {/* Добавлено fallback для имени */}
+                <div className={s.username}>{user.username || t('messages.unknown_user')}</div> 
                 <div className={s.phone}>{user.phone || t('messages.unknown_user')}</div>
               </div>
             </div>

@@ -11,12 +11,13 @@
 .statusEditor .field {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Добавлено для равномерного распределения */
   margin-bottom: 15px;
   width: 100%;
 }
 
 .statusEditor .icon {
-  margin-right: 10px;
+  margin-left: 10px; /* Увеличен отступ */
   font-size: 24px;
   color: var(--icon-color);
   cursor: pointer;
@@ -25,7 +26,6 @@
 .statusEditor .icon:hover {
   color: var(--primary-color);
 }
-
 
 .statusEditor .input {
   width: 100%;
@@ -44,6 +44,7 @@
 }
 
 .statusEditor .statusText {
+  flex-grow: 1; /* Текст занимает всё доступное пространство */
   font-size: 18px;
   color: var(--text-color);
 }
@@ -115,11 +116,22 @@
   }
 
   .statusEditor .field {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row; /* Убедимся, что элементы остаются в ряд */
+    align-items: center;
+    justify-content: space-between; /* Поддерживаем равное распределение */
   }
 
   .statusEditor .input {
     width: 100%;
+  }
+
+  .statusEditor .statusText {
+    flex-grow: 1;
+    font-size: 16px;
+  }
+
+  .statusEditor .icon {
+    font-size: 20px;
+    margin-left: 10px;
   }
 }

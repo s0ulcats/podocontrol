@@ -48,6 +48,7 @@ const DialogPage = () => {
             setImage(null);
             fetchMessages();
         } catch (error) {
+            console.error(error);
         }
     };
 
@@ -65,7 +66,6 @@ const DialogPage = () => {
             <form onSubmit={handleSubmit} className={`${s.inputForm} ${theme === 'dark' ? s.dark : s.light}`}>
                 <label className={s.fileInputLabel}>
                     <BsImage className={s.icon} />
-                    {t('forms.add_image')}
                     <input
                         type="file"
                         className={s.fileInput}
@@ -95,7 +95,7 @@ const DialogPage = () => {
                     className={`${s.inputField} ${theme === 'dark' ? s.dark : s.light}`}
                 />
                 <button type="submit" className={`${s.sendButton} ${theme === 'dark' ? s.dark : s.light}`}>
-                    {t('buttons.send')} <AiOutlineSend className={s.sendIcon} />
+                    <AiOutlineSend className={s.sendIcon} />
                 </button>
             </form>
         </div>

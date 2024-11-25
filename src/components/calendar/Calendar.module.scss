@@ -7,6 +7,10 @@
   max-width: 600px;
   margin: 0 auto;
   transition: background 0.3s, color 0.3s;
+  
+  /* Убираем возможные внешние отступы */
+  margin-top: 0;
+  margin-bottom: 0;
 
   &.dark {
     --background: linear-gradient(135deg, #0f0f1d, #222);
@@ -136,56 +140,49 @@
     padding: 1rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    max-width: 500px;
-
+    width: 90%;  // уменьшаем ширину для мобильных
+    max-width: 500px;  // максимальная ширина для десктопов
+    margin: 0;  // убираем дополнительные отступы
+  
+    // Добавим медиа-запрос для мобильных устройств
+    @media (max-width: 768px) {
+      width: 85%;  // на мобильных устройствах будет еще меньше
+    }
+    
     form {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-
+  
       input, button {
         padding: 0.5rem;
         border-radius: 6px;
         font-size: 0.9rem;
         transition: background 0.3s, border-color 0.3s;
       }
-
+  
       input {
         background: var(--input-bg);
         border: 1px solid var(--input-border);
         color: var(--text-color);
-
+  
         &:focus {
           outline: none;
           border-color: var(--button-hover);
         }
       }
-
+  
       button {
         background: var(--button-bg);
         color: #fff;
         border: none;
         cursor: pointer;
-
+  
         &:hover {
           background: var(--button-hover);
         }
       }
     }
   }
-}
-
-@media (max-width: 768px) {
-  .calendar {
-    padding: 0.5rem;
-  }
-
-  table {
-    font-size: 0.8rem;
-  }
-
-  .modal {
-    width: 90%;
-  }
+  
 }
