@@ -17,7 +17,9 @@ export const registerUser = createAsyncThunk('auth/registerUser', async ({ usern
         return data;
     } catch (error) {
         console.log(error);
-        return { message: 'This user exists' };
+        // Обработаем ошибки, полученные от сервера
+        const message = error.response?.data?.message || 'Registration failed';
+        return { message };
     }
 });
 
@@ -30,7 +32,9 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ username, p
         return data;
     } catch (error) {
         console.log(error);
-        return { message: 'Error with credentials' };
+        // Обработаем ошибки, полученные от сервера
+        const message = error.response?.data?.message || 'Error with credentials';
+        return { message };
     }
 });
 

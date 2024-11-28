@@ -6,7 +6,7 @@ import cn from 'classnames';
 import * as calendar from './calendar';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
 import { getMe } from '../../redux/features/auth/authSlice';
-import { useTranslation } from 'react-i18next'; // Import translation hook
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 const Calendar = ({
@@ -186,9 +186,9 @@ const Calendar = ({
                 className={cn(s.timeSlot, { [s.booked]: !!booking })}
                 onClick={() => {
                   if (isOwner) {
-                    setViewBookingDetails(booking); // Показать детали бронирования для владельца
+                    setViewBookingDetails(booking);
                   } else if (!booking) {
-                    handleTimeSlotClick(time); // Позволить создать новое бронирование
+                    handleTimeSlotClick(time);
                   }
                 }}
               >

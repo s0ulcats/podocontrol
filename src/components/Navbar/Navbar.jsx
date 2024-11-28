@@ -7,6 +7,7 @@ import {
     AiOutlineHome,
     AiOutlineUser,
     AiOutlineFileAdd,
+    AiTwotoneCalendar,
     AiOutlineMoon,
     AiFillSun,
     AiFillSetting,
@@ -23,7 +24,7 @@ const Navbar = () => {
     const { theme, toggleTheme } = useContext(ThemeContext);
     const [isMobile, setIsMobile] = useState(false);
     const [showMobileMenu, setShowMobileMenu] = useState(false);
-    const [showDropdown, setShowDropdown] = useState(false); // Для переключения языка
+    const [showDropdown, setShowDropdown] = useState(false);
     const { user: authUser } = useSelector((state) => state.auth);
     const phone = useSelector((state) => state.auth.user?.phone);
     const { t, i18n } = useTranslation();
@@ -89,7 +90,7 @@ const Navbar = () => {
                                     to="/recordings"
                                     className={`${s.navLink} ${theme === 'dark' ? s.dark : s.light}`}
                                 >
-                                    <AiOutlineUser /> {t('navigation.recordings')}
+                                    <AiTwotoneCalendar /> {t('navigation.recordings')}
                                 </NavLink>
                 </>
             )}
@@ -167,7 +168,6 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Мобильное меню */}
             {isMobile && showMobileMenu && (
                 <div className={s.mobileOverlay} onClick={() => setShowMobileMenu(false)}>
                     <div

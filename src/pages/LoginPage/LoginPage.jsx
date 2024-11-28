@@ -27,13 +27,18 @@ const LoginPage = () => {
 
   const handleSubmit = async () => {
     try {
-      await dispatch(loginUser({ phone, password })).unwrap();
-      setPhone('');
-      setPassword('');
+        const response = await dispatch(loginUser({ phone, password })).unwrap();
+        if (response.message) {
+            toast.error(response.message);
+        } else {
+            toast.success(t('auth.login_success'));
+        }
+        setPhone('');
+        setPassword('');
     } catch (error) {
-      toast.error(t('auth.invalid_credentials'));
+        toast.error(t('auth.invalid_credentials'));
     }
-  };
+};
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className={`${s.form} ${theme === 'dark' ? s.dark : s.light}`}>

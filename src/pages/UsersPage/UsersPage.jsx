@@ -9,7 +9,7 @@ import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 import { useTranslation } from 'react-i18next';
 
 const UsersPage = () => {
-  const { t } = useTranslation(); // Инициализируем t для перевода
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { users, loading, error } = useSelector((state) => state.user);
@@ -20,7 +20,7 @@ const UsersPage = () => {
   }, [dispatch]);
 
   if (loading) return <Preloader />;
-  if (error) return <p className={s.error}>{t('messages.error_message', { error })}</p>; // Перевод ошибки с параметром
+  if (error) return <p className={s.error}>{t('messages.error_message', { error })}</p>;
 
   const handleUserClick = (id) => {
     navigate(`/user/${id}`);

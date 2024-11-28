@@ -1,4 +1,3 @@
-// src/i18n.js
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './locales/en.json';
@@ -11,10 +10,10 @@ i18n.use(initReactI18next).init({
     ru: { translation: ru },
     ua: { translation: ua },
   },
-  lng: 'ua', // default language
+  lng: 'ua',
   fallbackLng: 'en',
   interpolation: {
-    escapeValue: false, // React already safes from xss
+    escapeValue: false,
   },
 });
 

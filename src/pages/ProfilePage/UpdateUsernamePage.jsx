@@ -7,7 +7,7 @@ import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 import { useTranslation } from 'react-i18next';
 
 const UpdateUsername = ({ initialUsername, initialPhone, userId }) => {
-    const { t } = useTranslation();  // useTranslation hook
+    const { t } = useTranslation();
     const [isEditing, setIsEditing] = useState(false);
     const [username, setUsername] = useState(initialUsername || '');
     const [phone, setPhone] = useState(initialPhone || '');

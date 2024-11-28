@@ -9,7 +9,7 @@ import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 import { useTranslation } from 'react-i18next';
 
 const RegisterPage = () => {
-  const { t } = useTranslation(); // Инициализация t для перевода
+  const { t } = useTranslation();
   const [username, setUsername] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
@@ -36,15 +36,25 @@ const RegisterPage = () => {
     setErrors(newErrors);
 
     if (!newErrors.username && !newErrors.phone && !newErrors.password) {
-      dispatch(registerUser({ username, phone, password }));
-      setUsername('');
-      setPhone('');
-      setPassword('');
-      toast.success(t('auth.toast.registration_success'));
+        dispatch(registerUser({ username, phone, password }))
+            .unwrap()
+            .then((response) => {
+                if (response.message) {
+                    toast.error(response.message); // Отображаем ошибку из ответа
+                } else {
+                    toast.success(t('auth.toast.registration_success'));
+                }
+            })
+            .catch(() => {
+                toast.error(t('auth.toast.registration_failed'));
+            });
+        setUsername('');
+        setPhone('');
+        setPassword('');
     } else {
-      toast.error(t('auth.toast.correct_errors'));
+        toast.error(t('auth.toast.correct_errors'));
     }
-  };
+};
 
   return (
     <form onSubmit={handleSubmit} className={`${s.form} ${theme === 'dark' ? s.dark : s.light}`}>

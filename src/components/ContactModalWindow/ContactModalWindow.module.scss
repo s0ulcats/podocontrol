@@ -1,29 +1,64 @@
+.callContainer {
+  position: relative; /* Устанавливаем относительное позиционирование для контейнера */
+  display: inline-block; /* Чтобы размеры подстраивались под содержимое */
+}
+
 .callButton {
   position: relative;
+  z-index: 1000; /* Устанавливаем z-index для кнопки */
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px; /* Размер кнопки */
+  width: 100px;
   height: 100px;
   border: none;
-  background: none; /* Полностью убираем фон */
+  background: none;
   cursor: pointer;
 
   .callImage {
-    width: 70px; /* Адаптивный размер изображения */
+    width: 70px;
     height: 70px;
   }
-
 }
 
-@media (max-width: 768px) {
-  .callButton {
-    width: 80px;
-    height: 80px;
+.modal {
+  position: absolute; /* Абсолютное позиционирование */
+  bottom: 110%; /* Смещаем модальное окно над кнопкой */
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  padding: 15px;
+  z-index: 1100; /* Выше кнопки */
+}
 
-    .callImage {
-      width: 50px;
-      height: 50px;
-    }
+.modalContent {
+  display: flex;
+  gap: 15px; /* Расстояние между кнопками */
+}
+
+.actionButton {
+  background-color: transparent; /* Убираем фон */
+  border: none; /* Убираем обводку */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Убираем внутренние отступы */
+  margin: 0; /* Убираем внешние отступы */
+
+  svg {
+    color: #006302; /* Цвет иконок */
+    font-size: 30px; /* Размер иконок */
+    transition: transform 0.2s ease; /* Анимация при наведении */
+  }
+
+  &:hover svg,
+  &:active svg {
+    transform: scale(1.1); /* Увеличение при наведении/активации */
+    color: #000; /* Цвет при взаимодействии (опционально) */
+  }
+
+  &:focus {
+    outline: none; /* Убираем обводку при фокусе */
   }
 }

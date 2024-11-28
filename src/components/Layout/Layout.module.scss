@@ -33,7 +33,7 @@
 }
 
 .dark .content {
-  background-color: #1a1a1a;
+  background-color: #1e1e1e;
 }
 
 .lightContent {
@@ -48,14 +48,20 @@
 
 @media (max-width: 768px) {
   .container {
-      padding: 10px;
+    padding: 10px;
   }
 
   .content {
-      padding: 15px;
+    padding: 10px;
   }
 
   .navbar {
-      padding: 10px;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .light,
+  .dark {
+    font-size: 0.9rem;
   }
 }

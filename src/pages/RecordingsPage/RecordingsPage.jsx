@@ -5,7 +5,7 @@ import Calendar from '../../components/calendar/Calendar.jsx';
 import { useTranslation } from 'react-i18next';
 
 const RecordingsPage = () => {
-  const { t } = useTranslation(); // Инициализация t для перевода
+  const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
 
   return (
