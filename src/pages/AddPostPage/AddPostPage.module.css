@@ -1,0 +1,140 @@
+.addPostPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.fileInputLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.imagePreviewContainer {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.imageWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.imagePreview {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+}
+
+.detachButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.inputLabel {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.inputField,
+.textareaField {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  background-color: var(--input-bg);
+  color: var(--input-text-color);
+}
+
+.textareaField {
+  height: 150px;
+  resize: vertical;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.submitBtn,
+.cancelBtn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submitBtn {
+  background-color: #27ae60;
+  color: white;
+}
+
+.submitBtn:hover {
+  background-color: #2ecc71;
+}
+
+.cancelBtn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.cancelBtn:hover {
+  background-color: #c0392b;
+}
+
+.light {
+  --bg-color: #ffffff;
+  --text-color: #333;
+  --input-bg: #f7f7f7;
+  --input-text-color: #333;
+}
+
+.dark {
+  --bg-color: #333;
+  --text-color: #fff;
+  --input-bg: #555;
+  --input-text-color: #fff;
+}/*# sourceMappingURL=AddPostPage.module.css.map */

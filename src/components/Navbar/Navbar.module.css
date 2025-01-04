@@ -1,0 +1,162 @@
+:root {
+  --light-bg: #cdcdcd;
+  --dark-bg: linear-gradient(90deg, #1c1c1c, #333);
+  --dark-link-color: #fff;
+  --light-link-color: #000000;
+  --link-hover-color: #ff79a9;
+  --light-menu-bg:#cdcdcd;
+  --dark-menu-bg: linear-gradient(180deg, #1c1c1c, #333);
+  --menu-hover-color: #ff79a9;
+  --btn-bg: #ff79a9;
+  --btn-hover-bg: #ff577f;
+  --dropdown-bg: #333;
+  --dropdown-hover-bg: #444;
+  --dropdown-active-color: bold;
+}
+
+.nav {
+  background: var(--light-bg);
+  color: var(--light-link-color);
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav.dark {
+  background: var(--dark-bg);
+  color: var(--dark-link-color);
+}
+.nav .logo {
+  width: 50px;
+}
+.nav .links {
+  display: flex;
+  gap: 1.5rem;
+}
+.nav .links .navLink {
+  text-decoration: none;
+  color: var(--link-color);
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+.nav .links .navLink:hover {
+  transform: scale(1.1);
+  color: var(--link-hover-color);
+}
+.nav .menuToggle {
+  background: none;
+  border: none;
+  color: var(--link-color);
+  font-size: 1.5rem;
+}
+.nav .controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.nav .controls .themeSwitch {
+  background: none;
+  border: none;
+  color: var(--link-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.nav .controls .themeSwitch:hover {
+  color: var(--menu-hover-color);
+}
+.nav .controls .languageSwitcher {
+  position: relative;
+}
+.nav .controls .languageSwitcher .languageBtn {
+  background: none;
+  border: none;
+  color: var(--link-color);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.nav .controls .languageSwitcher .languageBtn:hover {
+  color: var(--menu-hover-color);
+}
+.nav .controls .languageSwitcher .languageDropdown {
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  background: var(--dropdown-bg);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.nav .controls .languageSwitcher .languageDropdown .languageOption {
+  padding: 0.5rem 1rem;
+  color: var(--link-color);
+  background: transparent;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+.nav .controls .languageSwitcher .languageDropdown .languageOption:hover {
+  background: var(--dropdown-hover-bg);
+}
+.nav .controls .languageSwitcher .languageDropdown .languageOption.active {
+  font-weight: var(--dropdown-active-color);
+}
+.nav .controls .profileBtn {
+  background: none;
+  border: none;
+  color: var(--link-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.nav .controls .profileBtn:hover {
+  color: var(--menu-hover-color);
+}
+.nav .controls .logoutBtn,
+.nav .controls .loginBtn {
+  background: var(--btn-bg);
+  color: var(--link-color);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.nav .controls .logoutBtn:hover,
+.nav .controls .loginBtn:hover {
+  background: var(--btn-hover-bg);
+}
+.nav .mobileMenu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  height: 100%;
+  width: 250px;
+  background: var(--light-menu-bg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+.nav .mobileMenu.dark {
+  background: var(--dark-menu-bg);
+}
+.nav .mobileMenu.mobileMenuOpen {
+  left: 0;
+}
+.nav .mobileMenu .mobileMenuContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+.nav .mobileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}/*# sourceMappingURL=Navbar.module.css.map */

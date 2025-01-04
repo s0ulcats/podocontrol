@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: "Arial", sans-serif;
+}
+
+.light {
+  background-color: #ffffff;
+  color: #333333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.light .navbar {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.light .content {
+  background-color: #f9f9f9;
+}
+
+.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark .navbar {
+  background-color: #333333;
+  color: #f1f1f1;
+}
+
+.dark .content {
+  background-color: #1e1e1e;
+}
+
+.lightContent {
+  background-color: #f9f9f9;
+  color: #333333;
+}
+
+.darkContent {
+  background-color: #1a1a1a;
+  color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  .content {
+    padding: 10px;
+  }
+  .navbar {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  .light,
+  .dark {
+    font-size: 0.9rem;
+  }
+}/*# sourceMappingURL=Layout.module.css.map */

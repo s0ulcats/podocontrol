@@ -1,0 +1,128 @@
+@charset "UTF-8";
+.statusEditor {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--background);
+  transition: all 0.3s ease-in-out;
+}
+
+.statusEditor .field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Добавлено для равномерного распределения */
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.statusEditor .icon {
+  margin-left: 10px; /* Увеличен отступ */
+  font-size: 24px;
+  color: var(--icon-color);
+  cursor: pointer;
+}
+
+.statusEditor .icon:hover {
+  color: var(--primary-color);
+}
+
+.statusEditor .input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.statusEditor .input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.statusEditor .statusText {
+  flex-grow: 1; /* Текст занимает всё доступное пространство */
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+.statusEditor .errorText {
+  font-size: 14px;
+  color: var(--error-color);
+  margin-top: 5px;
+}
+
+.statusEditor .editContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.statusEditor .statusDisplay {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.statusEditor .iconBtn {
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--primary-color);
+  margin-left: 10px;
+}
+
+.statusEditor .iconBtn:hover {
+  color: var(--primary-color-hover);
+}
+
+.statusEditor .errorText {
+  color: red;
+}
+
+@media screen and (max-width: 768px) {
+  .statusEditor {
+    padding: 15px;
+  }
+  .statusEditor .field {
+    margin-bottom: 10px;
+  }
+  .statusEditor .input {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .statusEditor .statusText {
+    font-size: 16px;
+  }
+  .statusEditor .icon {
+    font-size: 20px;
+  }
+  .statusEditor .iconBtn {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .statusEditor {
+    padding: 10px;
+  }
+  .statusEditor .field {
+    flex-direction: row; /* Убедимся, что элементы остаются в ряд */
+    align-items: center;
+    justify-content: space-between; /* Поддерживаем равное распределение */
+  }
+  .statusEditor .input {
+    width: 100%;
+  }
+  .statusEditor .statusText {
+    flex-grow: 1;
+    font-size: 16px;
+  }
+  .statusEditor .icon {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+}/*# sourceMappingURL=UpdateUsernamePage.module.css.map */

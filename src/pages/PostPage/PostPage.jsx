@@ -46,7 +46,7 @@ const PostPage = React.memo(() => {
           <div className={s.imgWrapper}>
             <img
               alt={t('posts.postImageAlt')}
-              src={`http://localhost:3001/${post.imgUrl}`}
+              src={`https://podocontrolback-1.onrender.com/${post.imgUrl}`}
               className={s.image}
             />
           </div>

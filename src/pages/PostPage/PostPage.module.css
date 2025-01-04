@@ -1,0 +1,106 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.light {
+  background-color: #ffffff;
+  color: #333;
+}
+
+.returnBtn {
+  text-decoration: none;
+  font-size: 1rem;
+  color: inherit;
+  margin-bottom: 20px;
+}
+
+.postPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.imgWrapper {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+.appointmentAction {
+  margin-bottom: 20px;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.iconBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.calendarWrapper {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  .postPage {
+    padding: 10px;
+  }
+  .title {
+    font-size: 1.6rem;
+  }
+  .text {
+    font-size: 1rem;
+  }
+  .actions {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=PostPage.module.css.map */

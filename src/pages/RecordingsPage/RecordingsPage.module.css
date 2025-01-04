@@ -1,0 +1,40 @@
+.recordingsPage {
+  padding: 20px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.recordingsPage h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.recordingsPage .calendar {
+  margin-top: 20px;
+}
+.recordingsPage.light {
+  background-color: #f5f5f5;
+  color: #333;
+}
+.recordingsPage.dark {
+  background-color: #2d2d2d;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .recordingsPage {
+    padding: 10px;
+  }
+  .recordingsPage h1 {
+    font-size: 1.5rem;
+  }
+  .recordingsPage .calendar {
+    margin-top: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .recordingsPage h1 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  .recordingsPage .calendar {
+    margin-top: 10px;
+  }
+}/*# sourceMappingURL=RecordingsPage.module.css.map */

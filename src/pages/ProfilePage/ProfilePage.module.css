@@ -1,0 +1,67 @@
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.userCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--background);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background-color: var(--avatar-bg);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: var(--icon-color);
+  margin-bottom: 15px;
+}
+
+.userInfo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.username,
+.phone {
+  font-size: 18px;
+  color: var(--text-color);
+  margin-bottom: 5px;
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.profileNotFound {
+  color: var(--error-color);
+  text-align: center;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  .userCard {
+    width: 100%;
+  }
+}/*# sourceMappingURL=ProfilePage.module.css.map */

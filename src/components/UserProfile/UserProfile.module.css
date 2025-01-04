@@ -1,0 +1,92 @@
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark {
+  background-color: #2e2e2e;
+  color: #f1f1f1;
+}
+
+.light {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.info {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #888888;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.phone {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.status {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 15px;
+}
+
+.directButton {
+  padding: 8px 16px;
+  border: none;
+  background-color: #ff79a9;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+.directButton:hover {
+  background-color: #ff5383;
+}
+
+.posts {
+  margin-top: 20px;
+}
+
+.postsTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.posts .dark .postsTitle {
+  color: #f1f1f1;
+}
+
+.posts .light .postsTitle {
+  color: #333333;
+}/*# sourceMappingURL=UserProfile.module.css.map */
