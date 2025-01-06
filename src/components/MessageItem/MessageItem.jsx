@@ -35,10 +35,10 @@ const MessageItem = ({ message }) => {
             {message.imgUrl && (
                 <div className={s.imageWrapper}>
                     <img 
-                        src={`https://podocontrolback-1.onrender.com/${message.imgUrl}`} 
+                        src={`https://podocontrolback.onrender.com/${message.imgUrl}`} 
                         alt={t('messages.attached')} 
                         className={s.messageImage} 
-                        onClick={() => openImageModal(`https://podocontrolback-1.onrender.com/${message.imgUrl}`)} 
+                        onClick={() => openImageModal(`https://podocontrolback.onrender.com/${message.imgUrl}`)} 
                     />
                 </div>
             )}

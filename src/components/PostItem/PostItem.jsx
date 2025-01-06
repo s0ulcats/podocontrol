@@ -18,7 +18,7 @@ const PostItem = React.memo(({ post }) => {
         {post.imgUrl ? (
           <LazyLoad height={200} offset={100}>
             <div className={s.imageWrapper}>
-              <img alt="img" src={`https://podocontrolback-1.onrender.com/${post.imgUrl}`} className={s.image} />
+              <img alt="img" src={`https://podocontrolback.onrender.com/${post.imgUrl}`} className={s.image} />
             </div>
           </LazyLoad>
         ) : (

@@ -72,7 +72,7 @@ const EditPostPage = () => {
       <div className={s.imagePreviewContainer}>
         {oldImage && (
           <img
-            src={`https://podocontrolback-1.onrender.com/${oldImage}`}
+            src={`https://podocontrolback.onrender.com/${oldImage}`}
             alt={oldImage.name}
             className={s.imagePreview}
           />
